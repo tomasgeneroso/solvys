@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Solvys — Soluciones IT & MKT con IA</title>
+  <title>Solvys — Soluciones IT & Marketing con IA</title>
   <meta name="description" content="Transformamos empresas con tecnología, inteligencia artificial y marketing digital. Automatización, desarrollo web y consultoría estratégica.">
+  <!-- Vercel Analytics -->
+  <script defer src="/_vercel/insights/script.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -508,6 +510,53 @@
       .pricing-notes { grid-template-columns: 1fr; }
     }
 
+    /* ── PLANNER ── */
+    .planner { background: var(--bg-deep); padding: 9rem 0; }
+    .planner-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+    .planner-grid {
+      display: grid; grid-template-columns: 1fr 1.6fr;
+      gap: 5rem; align-items: start; margin-top: 3.5rem;
+    }
+    .planner-info-title {
+      font-size: clamp(1.7rem, 3vw, 2.6rem); font-weight: 700;
+      letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 1rem;
+    }
+    .planner-desc {
+      font-size: 0.95rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 2rem;
+    }
+    .planner-steps { display: flex; flex-direction: column; gap: 1.1rem; }
+    .planner-step {
+      display: flex; align-items: flex-start; gap: 1rem;
+      padding: 1rem 1.25rem;
+      background: rgba(30,64,175,0.06); border: 1px solid rgba(6,182,212,0.1);
+      border-radius: 14px; transition: all 0.4s var(--spring);
+    }
+    .planner-step:hover { border-color: rgba(6,182,212,0.3); background: rgba(6,182,212,0.04); }
+    .step-num {
+      width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+      background: rgba(6,182,212,0.12); border: 1px solid rgba(6,182,212,0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.72rem; font-weight: 700; color: var(--accent);
+      font-family: var(--mono);
+    }
+    .step-text strong { display: block; font-size: 0.88rem; font-weight: 600; margin-bottom: 0.15rem; }
+    .step-text span { font-size: 0.78rem; color: var(--text-muted); line-height: 1.5; }
+
+    .calendly-shell {
+      background: rgba(6,13,31,0.6); border: 1px solid rgba(6,182,212,0.16);
+      border-radius: 28px; padding: 6px; overflow: hidden;
+    }
+    .calendly-core {
+      background: rgba(12,22,45,0.95); border-radius: 23px; overflow: hidden;
+      box-shadow: inset 0 1px 1px rgba(255,255,255,0.04);
+    }
+    .calendly-inline-widget { border-radius: 23px; overflow: hidden; }
+
+    @media (max-width: 768px) {
+      .planner-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .calendly-inline-widget { height: 580px !important; }
+    }
+
     /* ── WHATSAPP FLOAT ── */
     .wa-float {
       position: fixed; bottom: 1.75rem; right: 1.75rem; z-index: 98;
@@ -639,6 +688,7 @@
   <a href="#nosotros" onclick="closeMobile()">Nosotros</a>
   <a href="#servicios" onclick="closeMobile()">Servicios</a>
   <a href="#trabajos" onclick="closeMobile()">Trabajos</a>
+  <a href="#planner" onclick="closeMobile()">Reunión</a>
   <a href="#contacto" onclick="closeMobile()">Contacto</a>
 </div>
 
@@ -653,6 +703,7 @@
       <li><a href="#nosotros">Nosotros</a></li>
       <li><a href="#servicios">Servicios</a></li>
       <li><a href="#trabajos">Trabajos</a></li>
+      <li><a href="#planner">Reunión</a></li>
       <li><a href="#contacto" class="nav-cta">Hablemos</a></li>
     </ul>
     <div class="hamburger" id="ham" onclick="toggleMobile()">
@@ -1047,6 +1098,66 @@
 </section>
 
 
+<!-- PLANNER -->
+<section class="planner" id="planner">
+  <div class="planner-inner">
+    <div class="reveal" style="text-align:center;max-width:560px;margin:0 auto;">
+      <div class="eyebrow">Agenda una reunión</div>
+      <h2 class="section-title">Hablemos de<br><span class="accent">tu proyecto</span></h2>
+    </div>
+
+    <div class="planner-grid">
+      <div class="reveal">
+        <p class="planner-desc">
+          Agendá una reunión de 30 minutos con nuestro equipo. Sin compromiso. Analizamos tu situación y te contamos cómo podemos ayudarte.
+        </p>
+
+        <div class="planner-steps">
+          <div class="planner-step">
+            <div class="step-num">01</div>
+            <div class="step-text">
+              <strong>Elegí día y horario</strong>
+              <span>Seleccioná el momento que mejor te venga en el calendario.</span>
+            </div>
+          </div>
+          <div class="planner-step">
+            <div class="step-num">02</div>
+            <div class="step-text">
+              <strong>Confirmación automática</strong>
+              <span>Recibís un email con el link de videollamada. Nuestro equipo también queda notificado.</span>
+            </div>
+          </div>
+          <div class="planner-step">
+            <div class="step-num">03</div>
+            <div class="step-text">
+              <strong>Reunión de diagnóstico</strong>
+              <span>30 min donde entendemos tu negocio y te proponemos el mejor camino.</span>
+            </div>
+          </div>
+        </div>
+
+        <a href="#contacto" class="btn-ghost" style="display:inline-flex;margin-top:2rem;">
+          O envianos un mensaje →
+        </a>
+      </div>
+
+      <div class="reveal d2">
+        <div class="calendly-shell">
+          <div class="calendly-core">
+            <!-- Calendly inline widget -->
+            <!-- IMPORTANTE: reemplazá "solvys/reunion" con tu URL real de Calendly -->
+            <div
+              class="calendly-inline-widget"
+              data-url="https://calendly.com/solvys/reunion?background_color=0c1620&text_color=f0f6ff&primary_color=06b6d4&hide_gdpr_banner=1"
+              style="min-width:280px;height:680px;">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CONTACTO -->
 <section class="contact" id="contacto">
   <div class="contact-glow"></div>
@@ -1088,7 +1199,8 @@
             <input type="hidden" name="_subject" value="🚀 Nuevo contacto desde Solvys">
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_next" value="https://solvys.com.ar/gracias">
+            <input type="hidden" name="_next" value="https://solvys.site/gracias">
+            <input type="hidden" name="_cc" value="aioalmeira@gmail.com">
 
             <div class="frow">
               <div class="fgroup">
@@ -1291,5 +1403,8 @@ const cntObs = new IntersectionObserver((entries) => {
 }, { threshold: 0.6 });
 counters.forEach(el => cntObs.observe(el));
 </script>
+
+<!-- Calendly widget script -->
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 </body>
 </html>
