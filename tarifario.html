@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solvys — Tarifario de Servicios</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary: #1E40AF;
+      --accent: #06B6D4;
+      --bg: #04080F;
+      --bg-card: #081324;
+      --border: rgba(6,182,212,0.18);
+      --text: #F0F6FF;
+      --muted: #7A90B8;
+      --font: 'Space Grotesk', sans-serif;
+      --mono: 'Space Mono', monospace;
+    }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 3rem 2rem;
+    }
+
+    .page {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 2.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .logo-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .logo-box {
+      width: 42px; height: 42px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; font-weight: 700; color: white;
+    }
+    .logo-name {
+      font-size: 1.6rem; font-weight: 700; letter-spacing: -0.03em;
+    }
+    .logo-tag {
+      font-size: 0.72rem; color: var(--muted); letter-spacing: 0.05em;
+      margin-top: 1px;
+    }
+    .header-right { text-align: right; }
+    .doc-label {
+      font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--accent); font-weight: 600; margin-bottom: 0.3rem;
+    }
+    .doc-title {
+      font-size: 1rem; font-weight: 700; letter-spacing: -0.01em;
+    }
+    .doc-sub {
+      font-size: 0.75rem; color: var(--muted); margin-top: 0.2rem;
+    }
+
+    /* ── RATE HERO ── */
+    .rate-hero {
+      text-align: center;
+      padding: 2.5rem 2rem;
+      background: rgba(30,64,175,0.08);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .rate-hero::before {
+      content: '';
+      position: absolute;
+      top: -40px; left: 50%;
+      transform: translateX(-50%);
+      width: 300px; height: 200px;
+      background: radial-gradient(circle, rgba(6,182,212,0.12), transparent 70%);
+      pointer-events: none;
+    }
+    .rate-eyebrow {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border: 1px solid rgba(6,182,212,0.3);
+      border-radius: 100px;
+      font-size: 0.62rem; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1rem;
+    }
+    .rate-value {
+      font-size: 2.8rem; font-weight: 700;
+      letter-spacing: -0.04em; color: var(--accent);
+      line-height: 1;
+    }
+    .rate-usd {
+      font-size: 1.1rem; color: var(--muted); font-weight: 500;
+      margin-top: 0.35rem;
+    }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--accent); font-weight: 600; font-family: var(--mono);
+      margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;
+    }
+    .section-label::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
+    }
+
+    /* ── TABLE ── */
+    .table-wrap {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    thead tr {
+      background: rgba(6,182,212,0.06);
+      border-bottom: 1px solid var(--border);
+    }
+    thead th {
+      padding: 0.75rem 1.25rem;
+      font-size: 0.62rem; font-weight: 600;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--muted); text-align: left;
+    }
+    thead th.right { text-align: right; }
+    tbody tr {
+      border-bottom: 1px solid rgba(6,182,212,0.07);
+      transition: background 0.2s;
+    }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: rgba(6,182,212,0.04); }
+    td {
+      padding: 1.1rem 1.25rem;
+      vertical-align: middle;
+    }
+    .td-name {
+      font-weight: 600; font-size: 0.92rem; letter-spacing: -0.01em;
+      margin-bottom: 0.2rem;
+    }
+    .td-sub {
+      font-size: 0.75rem; color: var(--muted); line-height: 1.5;
+    }
+    .td-hours {
+      font-family: var(--mono);
+      font-size: 0.78rem; color: var(--accent); font-weight: 700;
+      white-space: nowrap; text-align: center;
+    }
+    .td-price {
+      text-align: right; white-space: nowrap;
+    }
+    .price-min {
+      font-size: 1.05rem; font-weight: 700; color: var(--accent);
+      letter-spacing: -0.02em;
+    }
+    .price-sep {
+      font-size: 0.75rem; color: var(--muted); margin: 0 0.2rem;
+    }
+    .price-max {
+      font-size: 0.88rem; font-weight: 600; color: var(--muted);
+    }
+    .price-only {
+      font-size: 1.1rem; font-weight: 700; color: var(--accent);
+      letter-spacing: -0.02em;
+    }
+    .badge-custom {
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      background: rgba(6,182,212,0.1);
+      border: 1px solid rgba(6,182,212,0.25);
+      border-radius: 100px;
+      font-size: 0.65rem; font-weight: 600;
+      color: var(--accent); letter-spacing: 0.08em;
+    }
+    .variable-row td {
+      background: rgba(30,64,175,0.07);
+      font-style: italic;
+    }
+    .variable-row .td-name { color: var(--accent); }
+
+    /* ── LEGEND ── */
+    .legend {
+      display: flex; align-items: center; gap: 1.5rem;
+      font-size: 0.72rem; color: var(--muted);
+      margin-bottom: 2rem;
+    }
+    .legend-item { display: flex; align-items: center; gap: 0.4rem; }
+    .legend-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .dot-min { background: var(--accent); }
+    .dot-max { background: #475569; }
+
+    /* ── SUPPORT BOX ── */
+    .support-box {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1.75rem;
+      align-items: center;
+      padding: 1.75rem 2rem;
+      background: rgba(6,182,212,0.05);
+      border: 1px solid rgba(6,182,212,0.2);
+      border-radius: 16px;
+      margin-bottom: 1.5rem;
+    }
+    .support-badge {
+      width: 60px; height: 60px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.72rem; font-weight: 700; color: white;
+      text-align: center; line-height: 1.2; flex-shrink: 0;
+    }
+    .support-title {
+      font-size: 0.98rem; font-weight: 700; margin-bottom: 0.6rem;
+    }
+    .support-title span {
+      display: inline-block;
+      padding: 0.15rem 0.55rem;
+      background: rgba(34,197,94,0.15);
+      border: 1px solid rgba(34,197,94,0.3);
+      border-radius: 100px;
+      font-size: 0.62rem; color: #22C55E; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      margin-left: 0.5rem; vertical-align: middle;
+    }
+    .support-list { display: flex; flex-direction: column; gap: 0.3rem; }
+    .support-item {
+      display: flex; align-items: flex-start; gap: 0.6rem;
+      font-size: 0.8rem; color: var(--muted);
+    }
+    .si-icon { flex-shrink: 0; margin-top: 1px; }
+    .si-green { color: #22C55E; }
+    .si-yellow { color: #EAB308; }
+
+    /* ── NOTES ── */
+    .notes-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem 2rem;
+      padding: 1.5rem 1.75rem;
+      background: rgba(30,64,175,0.05);
+      border: 1px solid rgba(30,64,175,0.15);
+      border-radius: 14px;
+      margin-bottom: 2rem;
+    }
+    .note-item {
+      display: flex; align-items: flex-start; gap: 0.5rem;
+      font-size: 0.76rem; color: var(--muted); line-height: 1.5;
+    }
+    .note-item::before {
+      content: '→';
+      color: var(--accent); flex-shrink: 0; font-size: 0.7rem; margin-top: 1px;
+    }
+    .note-item strong { color: var(--text); font-weight: 600; }
+
+    /* ── FOOTER ── */
+    .doc-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap; gap: 0.75rem;
+    }
+    .doc-footer-logo {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-weight: 700; font-size: 0.9rem;
+    }
+    .doc-footer-logo .logo-box { width: 26px; height: 26px; font-size: 11px; border-radius: 7px; }
+    .doc-footer-info { font-size: 0.72rem; color: var(--muted); }
+    .doc-footer-copy { font-size: 0.7rem; color: rgba(122,144,184,0.4); }
+
+    /* ── PRINT ── */
+    .print-btn {
+      position: fixed; bottom: 1.5rem; right: 1.5rem;
+      display: flex; align-items: center; gap: 0.5rem;
+      padding: 0.75rem 1.25rem;
+      background: var(--accent); color: var(--bg);
+      border: none; border-radius: 100px;
+      font-family: var(--font); font-size: 0.85rem; font-weight: 700;
+      cursor: pointer; box-shadow: 0 8px 30px rgba(6,182,212,0.35);
+      transition: all 0.3s ease;
+    }
+    .print-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(6,182,212,0.5); }
+
+    @media print {
+      body { background: white; color: #0f172a; padding: 1.5rem; }
+      :root {
+        --bg: white;
+        --bg-card: #f8fafc;
+        --text: #0f172a;
+        --muted: #64748b;
+        --border: rgba(30,64,175,0.15);
+        --accent: #1E40AF;
+        --primary: #1E40AF;
+      }
+      .print-btn { display: none; }
+      .rate-hero::before { display: none; }
+      tbody tr:hover { background: none; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div>
+      <div class="logo-row">
+        <div class="logo-box">S</div>
+        <div>
+          <div class="logo-name">SOLVYS</div>
+          <div class="logo-tag">IT · Marketing · Automatización · IA</div>
+        </div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="doc-label">Documento Oficial</div>
+      <div class="doc-title">Tarifario de Servicios</div>
+      <div class="doc-sub">Servicios · Módulos · Precios · 2025</div>
+    </div>
+  </div>
+
+  <!-- RATE HERO -->
+  <div class="rate-hero">
+    <div class="rate-eyebrow">Precio hora base</div>
+    <div class="rate-value">&#8364;20 EUR <span style="font-size:1.2rem;color:var(--muted);font-weight:400;">/hora</span></div>
+    <div class="rate-usd">Equivalencia USD: $22.5 / hora</div>
+  </div>
+
+  <!-- TABLE -->
+  <div class="section-label">// Módulos disponibles</div>
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot dot-min"></div>Precio mínimo</div>
+    <div class="legend-item"><div class="legend-dot dot-max"></div>Precio máximo</div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:45%">Módulo / Servicio</th>
+          <th class="right" style="width:18%">Hs. Mín</th>
+          <th class="right" style="width:18%">Hs. Máx</th>
+          <th class="right" style="width:19%">Precio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="td-name">Landing Page / Catálogo de Productos</div>
+            <div class="td-sub">Diseño responsive, animaciones, SEO básico</div>
+          </td>
+          <td class="td-hours">10h</td>
+          <td class="td-hours">15h</td>
+          <td class="td-price">
+            <span class="price-min">&#8364;200</span>
+            <span class="price-sep">—</span>
+            <span class="price-max">&#8364;300</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="td-name">Autenticación y Perfil de Usuario</div>
+            <div class="td-sub">Login, registro, JWT, OAuth, roles de acceso</div>
+          </td>
+          <td class="td-hours">4h</td>
+          <td class="td-hours">10h</td>
+          <td class="td-price">
+            <span class="price-min">&#8364;80</span>
+            <span class="price-sep">—</span>
+            <span class="price-max">&#8364;200</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="td-name">Pasarela de Pagos</div>
+            <div class="td-sub">Stripe, MercadoPago, webhooks, gestión de estados</div>
+          </td>
+          <td class="td-hours">15h</td>
+          <td class="td-hours">25h</td>
+          <td class="td-price">
+            <span class="price-min">&#8364;300</span>
+            <span class="price-sep">—</span>
+            <span class="price-max">&#8364;500</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="td-name">Gestión de Contenidos (CMS)</div>
+            <div class="td-sub">Panel admin, CRUD completo, permisos por rol</div>
+          </td>
+          <td class="td-hours">20h</td>
+          <td class="td-hours">25h</td>
+          <td class="td-price">
+            <span class="price-min">&#8364;400</span>
+            <span class="price-sep">—</span>
+            <span class="price-max">&#8364;500</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="td-name">E-commerce Básico — sin facturación</div>
+            <div class="td-sub">Catálogo, carrito, checkout, pasarela de pago</div>
+          </td>
+          <td class="td-hours">30h</td>
+          <td class="td-hours" style="color:var(--muted)">—</td>
+          <td class="td-price"><span class="price-only">&#8364;600</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="td-name">E-commerce Básico — con facturación</div>
+            <div class="td-sub">Incluye emisión de comprobantes y facturas</div>
+          </td>
+          <td class="td-hours">50h</td>
+          <td class="td-hours" style="color:var(--muted)">—</td>
+          <td class="td-price"><span class="price-only">&#8364;1.000</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="td-name">API Backend Personalizada</div>
+            <div class="td-sub">REST / GraphQL, auth, base de datos, documentación</div>
+          </td>
+          <td class="td-hours">15h</td>
+          <td class="td-hours">30h</td>
+          <td class="td-price">
+            <span class="price-min">&#8364;300</span>
+            <span class="price-sep">—</span>
+            <span class="price-max">&#8364;600</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="td-name">Módulo de Reportes y Dashboards</div>
+            <div class="td-sub">Charts, KPIs, filtros dinámicos, exportación</div>
+          </td>
+          <td class="td-hours">15h</td>
+          <td class="td-hours">30h</td>
+          <td class="td-price">
+            <span class="price-min">&#8364;300</span>
+            <span class="price-sep">—</span>
+            <span class="price-max">&#8364;600</span>
+          </td>
+        </tr>
+        <tr class="variable-row">
+          <td>
+            <div class="td-name">Proyectos Personalizados</div>
+            <div class="td-sub">Análisis previo sin costo · precio y horas a convenir</div>
+          </td>
+          <td class="td-hours" colspan="2" style="text-align:center;color:var(--accent);">Variable</td>
+          <td class="td-price"><span class="badge-custom">A CONVENIR</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SUPPORT -->
+  <div class="section-label">// Soporte post-entrega</div>
+
+  <div class="support-box">
+    <div class="support-badge">+1<br>AÑO</div>
+    <div>
+      <div class="support-title">
+        1 año de soporte gratuito incluido
+        <span>GRATIS</span>
+      </div>
+      <div class="support-list">
+        <div class="support-item">
+          <span class="si-icon si-green">&#10003;</span>
+          Mantenimiento ante errores o caídas del sistema
+        </div>
+        <div class="support-item">
+          <span class="si-icon si-green">&#10003;</span>
+          Corrección de bugs y estabilidad del producto entregado
+        </div>
+        <div class="support-item">
+          <span class="si-icon si-yellow">&#9888;</span>
+          Nuevas funcionalidades o cambios post-entrega requieren presupuesto adicional
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NOTES -->
+  <div class="section-label">// Notas y condiciones</div>
+
+  <div class="notes-grid">
+    <div class="note-item">Los rangos de horas son estimativos; el tiempo final varía según la complejidad</div>
+    <div class="note-item">Los módulos se pueden combinar. <strong>Descuentos por volumen</strong> — consultar</div>
+    <div class="note-item">Proyectos personalizados requieren análisis previo. <strong>Precio y horas a convenir</strong></div>
+    <div class="note-item">Entrega con código documentado y estructura clara</div>
+    <div class="note-item"><strong>Primer contacto y análisis inicial sin costo</strong></div>
+    <div class="note-item">Precios en EUR (base). Equivalencia USD: tarifa hora × 22.5</div>
+    <div class="note-item">Los precios <strong>no incluyen IVA</strong> salvo indicación contraria</div>
+    <div class="note-item">Se trabaja con acuerdo previo firmado y planificación de entregables</div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="doc-footer">
+    <div class="doc-footer-logo">
+      <div class="logo-box">S</div>
+      SOLVYS
+    </div>
+    <div class="doc-footer-info">hola@solvys.site &nbsp;·&nbsp; solvys.site</div>
+    <div class="doc-footer-copy">© 2025 Solvys · Todos los derechos reservados</div>
+  </div>
+
+</div>
+
+<button class="print-btn" onclick="window.print()">
+  &#128438; Guardar como PDF
+</button>
+
+</body>
+</html>
