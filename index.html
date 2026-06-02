@@ -162,7 +162,7 @@
 
     .hero-content {
       position: relative; z-index: 2;
-      max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+      max-width: 1200px; margin: 0 auto; padding: 6rem 2rem 3rem;
       display: grid; grid-template-columns: 1fr 1fr;
       align-items: center; gap: 4rem; width: 100%;
     }
@@ -413,6 +413,116 @@
     .pcard-title { font-size: 1.35rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.45rem; }
     .pcard-desc { font-size: 0.83rem; color: var(--text-muted); line-height: 1.65; max-width: 380px; }
 
+    /* ── PRICING ── */
+    .pricing { background: var(--bg-deep); padding: 9rem 0; }
+    .pricing-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+    .pricing-header { text-align: center; max-width: 600px; margin: 0 auto 1.5rem; }
+
+    .rate-badge {
+      display: inline-flex; align-items: center; gap: 1rem;
+      padding: 0.75rem 1.75rem; margin: 0 auto 3.5rem;
+      background: rgba(6,182,212,0.07); border: 1px solid rgba(6,182,212,0.25); border-radius: 100px;
+      font-size: 0.9rem; font-weight: 600; color: var(--text-primary);
+    }
+    .rate-badge span { color: var(--accent); font-size: 1.05rem; }
+    .rate-sep { width: 1px; height: 18px; background: rgba(6,182,212,0.25); }
+    .rate-wrapper { display: flex; justify-content: center; }
+
+    .pricing-grid {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 1.1rem; margin-bottom: 1.5rem;
+    }
+    .price-card {
+      border-radius: 20px; padding: 1.6rem;
+      background: rgba(6,13,31,0.85); border: 1px solid rgba(6,182,212,0.1);
+      position: relative; overflow: hidden;
+      transition: all 0.5s var(--spring);
+    }
+    .price-card::before {
+      content: ''; position: absolute; inset: 0; border-radius: 20px;
+      background: linear-gradient(135deg, rgba(6,182,212,0.06), transparent 55%);
+      opacity: 0; transition: opacity 0.4s ease;
+    }
+    .price-card:hover { border-color: rgba(6,182,212,0.35); transform: translateY(-5px); box-shadow: 0 18px 50px rgba(6,182,212,0.08); }
+    .price-card:hover::before { opacity: 1; }
+    .price-card--custom {
+      grid-column: span 3; display: grid; grid-template-columns: 1fr auto;
+      align-items: center; gap: 2rem;
+      background: linear-gradient(135deg, rgba(30,64,175,0.12), rgba(6,182,212,0.06));
+      border-color: rgba(6,182,212,0.22);
+    }
+    .pc-name { font-size: 1rem; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 0.35rem; }
+    .pc-sub { font-size: 0.78rem; color: var(--text-muted); line-height: 1.5; }
+    .pc-hours {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.2rem 0.6rem; border-radius: 100px;
+      background: rgba(6,182,212,0.07); border: 1px solid rgba(6,182,212,0.18);
+      font-size: 0.7rem; color: var(--accent); font-weight: 600;
+      margin-bottom: 0.85rem; font-family: var(--mono);
+    }
+    .pc-price {
+      display: flex; align-items: baseline; gap: 0.3rem; margin-top: 0.65rem;
+    }
+    .pc-price-min { font-size: 1.5rem; font-weight: 700; color: var(--accent); letter-spacing: -0.02em; }
+    .pc-price-sep { font-size: 0.85rem; color: var(--text-muted); }
+    .pc-price-max { font-size: 1.1rem; font-weight: 600; color: var(--text-muted); }
+    .pc-price-only { font-size: 1.5rem; font-weight: 700; color: var(--accent); letter-spacing: -0.02em; }
+
+    .support-banner {
+      display: grid; grid-template-columns: auto 1fr; gap: 2rem; align-items: center;
+      padding: 2rem 2.5rem; border-radius: 20px; margin-top: 1.5rem;
+      background: rgba(6,182,212,0.05); border: 1px solid rgba(6,182,212,0.2);
+    }
+    .support-badge {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; font-weight: 700; color: white; line-height: 1.1;
+      text-align: center; flex-shrink: 0;
+    }
+    .support-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.35rem; }
+    .support-items { display: flex; flex-direction: column; gap: 0.3rem; }
+    .support-item {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-size: 0.82rem; color: var(--text-muted);
+    }
+    .support-item .si-dot {
+      width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
+    }
+    .si-dot--green { background: #22C55E; }
+    .si-dot--yellow { background: #EAB308; }
+
+    .pricing-notes {
+      margin-top: 1.5rem; padding: 1.5rem 2rem;
+      background: rgba(30,64,175,0.05); border: 1px solid rgba(30,64,175,0.15);
+      border-radius: 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem 2rem;
+    }
+    .pricing-note { font-size: 0.78rem; color: var(--text-muted); display: flex; align-items: flex-start; gap: 0.5rem; }
+    .pricing-note::before { content: '→'; color: var(--accent); flex-shrink: 0; font-size: 0.72rem; margin-top: 1px; }
+
+    @media (max-width: 768px) {
+      .pricing-grid { grid-template-columns: 1fr; }
+      .price-card--custom { grid-column: span 1; grid-template-columns: 1fr; }
+      .support-banner { grid-template-columns: 1fr; text-align: center; }
+      .support-badge { margin: 0 auto; }
+      .pricing-notes { grid-template-columns: 1fr; }
+    }
+
+    /* ── WHATSAPP FLOAT ── */
+    .wa-float {
+      position: fixed; bottom: 1.75rem; right: 1.75rem; z-index: 98;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: #25D366; box-shadow: 0 8px 30px rgba(37,211,102,0.4);
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; transition: all 0.4s var(--spring);
+      animation: wa-pop 0.6s var(--expo) 2s both;
+    }
+    .wa-float:hover { transform: scale(1.12); box-shadow: 0 12px 40px rgba(37,211,102,0.55); }
+    .wa-float svg { width: 28px; height: 28px; }
+    @keyframes wa-pop {
+      from { opacity: 0; transform: scale(0.5); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
     /* ── CONTACT ── */
     .contact { background: var(--bg-deep); padding: 9rem 0; position: relative; overflow: hidden; }
     .contact-glow {
@@ -507,7 +617,8 @@
       .about-grid { grid-template-columns: 1fr; gap: 3.5rem; }
       .services-grid { grid-template-columns: 1fr; }
       .scard--wide { grid-column: span 1; grid-template-columns: 1fr; }
-      .portfolio-grid { grid-template-columns: 1fr; }
+      .portfolio-grid { grid-template-columns: 1fr !important; }
+      .pcard { aspect-ratio: 4/3 !important; }
       .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
       .frow { grid-template-columns: 1fr; }
       .footer-inner { flex-direction: column; text-align: center; }
@@ -522,6 +633,7 @@
   <a href="#nosotros" onclick="closeMobile()">Nosotros</a>
   <a href="#servicios" onclick="closeMobile()">Servicios</a>
   <a href="#trabajos" onclick="closeMobile()">Trabajos</a>
+  <a href="#presupuesto" onclick="closeMobile()">Presupuesto</a>
   <a href="#contacto" onclick="closeMobile()">Contacto</a>
 </div>
 
@@ -536,6 +648,7 @@
       <li><a href="#nosotros">Nosotros</a></li>
       <li><a href="#servicios">Servicios</a></li>
       <li><a href="#trabajos">Trabajos</a></li>
+      <li><a href="#presupuesto">Presupuesto</a></li>
       <li><a href="#contacto" class="nav-cta">Hablemos</a></li>
     </ul>
     <div class="hamburger" id="ham" onclick="toggleMobile()">
@@ -543,6 +656,13 @@
     </div>
   </div>
 </nav>
+
+<!-- WHATSAPP FLOATING -->
+<a href="https://wa.me/5491100000000?text=Hola%20Solvys%2C%20me%20gustar%C3%ADa%20consultarles%20sobre%20sus%20servicios" target="_blank" rel="noopener" class="wa-float" title="Escribinos por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
 
 <!-- HERO -->
 <section class="hero">
@@ -856,46 +976,208 @@
       <h2 class="section-title">Proyectos que<br><span class="accent">hablan por sí solos</span></h2>
     </div>
 
-    <div class="portfolio-grid">
-      <div class="pcard reveal d1">
+    <div class="portfolio-grid" style="grid-template-columns:repeat(3,1fr);gap:1.1rem;">
+
+      <div class="pcard reveal d1" style="aspect-ratio:3/4;">
         <div class="pcard-bg" style="background:linear-gradient(135deg,#1E40AF,#06B6D4)"></div>
-        <div class="pcard-emoji">🛒</div>
+        <div class="pcard-emoji" style="font-size:4rem;">&#9999;&#65039;</div>
         <div class="pcard-overlay">
-          <span class="pcard-cat">E-commerce · IT</span>
-          <h3 class="pcard-title">Plataforma de Ventas Online</h3>
-          <p class="pcard-desc">E-commerce completo con panel admin, pagos integrados y sincronización de stock en tiempo real.</p>
+          <span class="pcard-cat">Identidad Visual</span>
+          <h3 class="pcard-title">Diseño de Logos</h3>
+          <p class="pcard-desc">Identidades únicas que comunican el ADN de la marca. Desde concepto hasta entrega en todos los formatos.</p>
         </div>
       </div>
 
-      <div class="pcard reveal d2">
+      <div class="pcard reveal d2" style="aspect-ratio:3/4;">
         <div class="pcard-bg" style="background:linear-gradient(135deg,#06B6D4,#0D1F5C)"></div>
-        <div class="pcard-emoji">📊</div>
+        <div class="pcard-emoji" style="font-size:4rem;">&#127991;</div>
         <div class="pcard-overlay">
-          <span class="pcard-cat">Automatización · IA</span>
-          <h3 class="pcard-title">Sistema de Reportes Automáticos</h3>
-          <p class="pcard-desc">Pipeline de datos que genera reportes ejecutivos diarios con análisis IA enviados automáticamente al equipo.</p>
+          <span class="pcard-cat">Brand Strategy</span>
+          <h3 class="pcard-title">Branding Integral</h3>
+          <p class="pcard-desc">Manual de marca, paleta de colores, tipografía y aplicaciones. Coherencia visual en todos los puntos de contacto.</p>
         </div>
       </div>
 
-      <div class="pcard reveal d1">
-        <div class="pcard-bg" style="background:linear-gradient(135deg,#0D1F5C,#06B6D4)"></div>
-        <div class="pcard-emoji">📣</div>
+      <div class="pcard reveal d3" style="aspect-ratio:3/4;">
+        <div class="pcard-bg" style="background:linear-gradient(135deg,#0D1F5C,#1E40AF)"></div>
+        <div class="pcard-emoji" style="font-size:4rem;">&#128202;</div>
         <div class="pcard-overlay">
-          <span class="pcard-cat">Marketing · SEM</span>
-          <h3 class="pcard-title">Campaña de Captación Masiva</h3>
-          <p class="pcard-desc">Estrategia full-funnel en Meta + Google que triplicó leads en 90 días con el mismo presupuesto.</p>
+          <span class="pcard-cat">Estrategia Digital</span>
+          <h3 class="pcard-title">Marketing Digital</h3>
+          <p class="pcard-desc">Full-funnel en Meta + Google. Segmentación precisa, creatividades que convierten y ROI medible desde el día 1.</p>
         </div>
       </div>
 
-      <div class="pcard reveal d2">
+      <div class="pcard reveal d1" style="aspect-ratio:3/4;">
+        <div class="pcard-bg" style="background:linear-gradient(135deg,#06B6D4,#1E40AF)"></div>
+        <div class="pcard-emoji" style="font-size:4rem;">&#128222;</div>
+        <div class="pcard-overlay">
+          <span class="pcard-cat">Sales · Prospecting</span>
+          <h3 class="pcard-title">Ventas & Cold Calling</h3>
+          <p class="pcard-desc">Scripts optimizados, bases segmentadas y seguimiento automatizado para maximizar la tasa de cierre.</p>
+        </div>
+      </div>
+
+      <div class="pcard reveal d2" style="aspect-ratio:3/4;">
         <div class="pcard-bg" style="background:linear-gradient(135deg,#1E40AF,#0D1F5C)"></div>
-        <div class="pcard-emoji">🤖</div>
+        <div class="pcard-emoji" style="font-size:4rem;">&#128193;</div>
         <div class="pcard-overlay">
-          <span class="pcard-cat">IA · Chatbot</span>
-          <h3 class="pcard-title">Asistente Virtual con IA</h3>
-          <p class="pcard-desc">Chatbot entrenado con la base de conocimiento de la empresa, disponible 24/7 en todos los canales.</p>
+          <span class="pcard-cat">CRM · Automatizacion</span>
+          <h3 class="pcard-title">CRM Marketing</h3>
+          <p class="pcard-desc">Implementación de CRM con flujos de nurturing automatizados y segmentación dinámica de clientes.</p>
         </div>
       </div>
+
+      <div class="pcard reveal d3" style="aspect-ratio:3/4;">
+        <div class="pcard-bg" style="background:linear-gradient(135deg,#0D1F5C,#06B6D4)"></div>
+        <div class="pcard-emoji" style="font-size:4rem;">&#127912;</div>
+        <div class="pcard-overlay">
+          <span class="pcard-cat">Diseño Grafico</span>
+          <h3 class="pcard-title">Publicidad & Redes</h3>
+          <p class="pcard-desc">Piezas para feed, stories, banners y campañas. Diseño que detiene el scroll y comunica en segundos.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PRESUPUESTO -->
+<section class="pricing" id="presupuesto">
+  <div class="pricing-inner">
+    <div class="pricing-header reveal">
+      <div class="eyebrow">Presupuesto</div>
+      <h2 class="section-title">Precios claros,<br><span class="accent">sin sorpresas</span></h2>
+      <p class="muted" style="font-size:1rem;line-height:1.75;margin-top:0.75rem;">Módulos combinables. Descuentos por volumen disponibles.</p>
+    </div>
+    <div class="rate-wrapper reveal d1">
+      <div class="rate-badge">
+        <span>&#8364;20 EUR / hora</span>
+        <div class="rate-sep"></div>
+        <span style="color:var(--text-muted);font-size:0.85rem;">USD 22.5 / hora</span>
+        <div class="rate-sep"></div>
+        <span style="font-size:0.78rem;color:var(--text-muted);">Precio hora base</span>
+      </div>
+    </div>
+
+    <div class="pricing-grid">
+
+      <div class="price-card reveal d1">
+        <div class="pc-hours">10h — 15h</div>
+        <div class="pc-name">Landing Page / Catálogo</div>
+        <div class="pc-sub">Diseño responsive, animaciones, SEO básico</div>
+        <div class="pc-price">
+          <span class="pc-price-min">&#8364;200</span>
+          <span class="pc-price-sep">—</span>
+          <span class="pc-price-max">&#8364;300</span>
+        </div>
+      </div>
+
+      <div class="price-card reveal d2">
+        <div class="pc-hours">4h — 10h</div>
+        <div class="pc-name">Autenticación & Perfil</div>
+        <div class="pc-sub">Login, registro, JWT, OAuth, roles de usuario</div>
+        <div class="pc-price">
+          <span class="pc-price-min">&#8364;80</span>
+          <span class="pc-price-sep">—</span>
+          <span class="pc-price-max">&#8364;200</span>
+        </div>
+      </div>
+
+      <div class="price-card reveal d3">
+        <div class="pc-hours">15h — 25h</div>
+        <div class="pc-name">Pasarela de Pagos</div>
+        <div class="pc-sub">Stripe, MercadoPago, webhooks, gestión de estados</div>
+        <div class="pc-price">
+          <span class="pc-price-min">&#8364;300</span>
+          <span class="pc-price-sep">—</span>
+          <span class="pc-price-max">&#8364;500</span>
+        </div>
+      </div>
+
+      <div class="price-card reveal d1">
+        <div class="pc-hours">20h — 25h</div>
+        <div class="pc-name">Gestión de Contenidos (CMS)</div>
+        <div class="pc-sub">Panel admin, CRUD completo, permisos por rol</div>
+        <div class="pc-price">
+          <span class="pc-price-min">&#8364;400</span>
+          <span class="pc-price-sep">—</span>
+          <span class="pc-price-max">&#8364;500</span>
+        </div>
+      </div>
+
+      <div class="price-card reveal d2">
+        <div class="pc-hours">30h min.</div>
+        <div class="pc-name">E-commerce sin Facturación</div>
+        <div class="pc-sub">Catálogo, carrito, checkout, pasarela de pago</div>
+        <div class="pc-price">
+          <span class="pc-price-only">&#8364;600</span>
+        </div>
+      </div>
+
+      <div class="price-card reveal d3">
+        <div class="pc-hours">50h min.</div>
+        <div class="pc-name">E-commerce con Facturación</div>
+        <div class="pc-sub">Incluye emisión de comprobantes y facturas</div>
+        <div class="pc-price">
+          <span class="pc-price-only">&#8364;1.000</span>
+        </div>
+      </div>
+
+      <div class="price-card reveal d1">
+        <div class="pc-hours">15h — 30h</div>
+        <div class="pc-name">API Backend Personalizada</div>
+        <div class="pc-sub">REST / GraphQL, auth, base de datos, documentación</div>
+        <div class="pc-price">
+          <span class="pc-price-min">&#8364;300</span>
+          <span class="pc-price-sep">—</span>
+          <span class="pc-price-max">&#8364;600</span>
+        </div>
+      </div>
+
+      <div class="price-card reveal d2">
+        <div class="pc-hours">15h — 30h</div>
+        <div class="pc-name">Reportes & Dashboards</div>
+        <div class="pc-sub">Charts, KPIs, filtros dinámicos, exportación</div>
+        <div class="pc-price">
+          <span class="pc-price-min">&#8364;300</span>
+          <span class="pc-price-sep">—</span>
+          <span class="pc-price-max">&#8364;600</span>
+        </div>
+      </div>
+
+      <div class="price-card price-card--custom reveal d3">
+        <div>
+          <div class="pc-hours">Variable</div>
+          <div class="pc-name">Proyectos Personalizados</div>
+          <div class="pc-sub">Soluciones a medida: análisis previo sin costo, precio y horas a convenir según complejidad.</div>
+        </div>
+        <a href="#contacto" class="btn-primary" style="white-space:nowrap;flex-shrink:0;">
+          Consultar <span class="btn-icon">↗</span>
+        </a>
+      </div>
+
+    </div>
+
+    <div class="support-banner reveal d1">
+      <div class="support-badge">+1<br>AÑO</div>
+      <div>
+        <div class="support-title">1 año de soporte gratuito incluido en todos los proyectos</div>
+        <div class="support-items">
+          <div class="support-item"><span class="si-dot si-dot--green"></span>Mantenimiento ante errores o caídas del sistema</div>
+          <div class="support-item"><span class="si-dot si-dot--green"></span>Corrección de bugs y estabilidad del producto entregado</div>
+          <div class="support-item"><span class="si-dot si-dot--yellow"></span>Nuevas funcionalidades post-entrega requieren presupuesto adicional</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pricing-notes reveal d2">
+      <div class="pricing-note">Los rangos de horas son estimativos según la complejidad del proyecto</div>
+      <div class="pricing-note">Los módulos se pueden combinar con descuentos por volumen</div>
+      <div class="pricing-note">Entrega con código documentado y estructura clara</div>
+      <div class="pricing-note">Primer contacto y análisis inicial sin costo</div>
+      <div class="pricing-note">Precios en EUR. Equivalencia USD: tarifa hora x 22.5</div>
+      <div class="pricing-note">Se trabaja con acuerdo previo firmado y entregables definidos</div>
     </div>
   </div>
 </section>
@@ -918,11 +1200,15 @@
           </div>
         </div>
         <div class="cdetail">
-          <div class="cdetail-icon">💬</div>
+          <div class="cdetail-icon">&#128172;</div>
           <div class="cdetail-text">
             <strong>WhatsApp</strong>Respuesta garantizada en el día
           </div>
         </div>
+        <a href="https://wa.me/5491100000000?text=Hola%20Solvys%2C%20me%20gustar%C3%ADa%20consultarles%20sobre%20sus%20servicios" target="_blank" rel="noopener" class="btn-primary" style="display:inline-flex;margin-top:1.5rem;background:#25D366;color:white;box-shadow:0 8px 30px rgba(37,211,102,0.3);">
+          Escribinos por WhatsApp
+          <span class="btn-icon" style="background:rgba(255,255,255,0.2);">&#8599;</span>
+        </a>
         <div class="cdetail">
           <div class="cdetail-icon">🕐</div>
           <div class="cdetail-text">
@@ -978,7 +1264,7 @@
         <div class="logo-box">S</div>
         SOLVYS
       </a>
-      <p class="footer-tagline">Soluciones IT & MKT con IA</p>
+      <p class="footer-tagline">Soluciones IT & Marketing con IA</p>
     </div>
     <div class="footer-links">
       <a href="#nosotros">Nosotros</a>
