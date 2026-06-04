@@ -51,7 +51,7 @@
     .mobile-menu a:hover{color:var(--accent)}
 
     /* HERO */
-    .hero{position:relative;height:100dvh;display:flex;align-items:center;overflow:hidden;background:var(--bg-deep)}
+    .hero{position:relative;min-height:100dvh;display:flex;align-items:center;overflow:hidden;background:var(--bg-deep)}
     #neural-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
     .hero-glow{position:absolute;width:700px;height:700px;background:radial-gradient(circle,rgba(30,64,175,.35) 0%,transparent 70%);top:-150px;left:-150px;pointer-events:none;animation:glow-breathe 7s ease-in-out infinite}
     .hero-glow-2{position:absolute;width:450px;height:450px;background:radial-gradient(circle,rgba(6,182,212,.22) 0%,transparent 70%);bottom:-50px;right:8%;pointer-events:none;animation:glow-breathe 9s ease-in-out infinite reverse}
@@ -67,7 +67,7 @@
     .hero-eyebrow{display:inline-flex;align-items:center;gap:.5rem;padding:.35rem .875rem;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.28);border-radius:100px;font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;max-width:100%;flex-wrap:wrap}
     .dot-live{width:6px;height:6px;background:var(--accent);border-radius:50%;animation:dot-pulse 2s ease-in-out infinite}
     @keyframes dot-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.6)}}
-    .hero-title{font-size:clamp(2.4rem,5vw,4.5rem);font-weight:700;line-height:1.05;letter-spacing:-.03em;margin-bottom:3rem;min-height:4.4em}
+    .hero-title{font-size:clamp(2.4rem,5vw,4.5rem);font-weight:700;line-height:1.05;letter-spacing:-.03em;margin-bottom:3rem}
     .hero-title span{display:block}
     .hero-title>span:last-child{min-height:2.2em}
     .tw-accent{color:var(--accent)}
@@ -251,7 +251,6 @@
       .hero-content{grid-template-columns:1fr;gap:2rem;text-align:center;padding:6rem 1.25rem 2rem;width:100%}
       .hero-left{width:100%;min-width:0}
       .hero-title{font-size:clamp(1.8rem,8vw,2.8rem)}
-      .hero-eyebrow{font-size:.58rem;letter-spacing:.1em;justify-content:center}
       .hero-robot{order:-1;width:100%}.robot-wrapper{max-width:220px;margin:0 auto}
       .hero-sub{margin-left:auto;margin-right:auto;font-size:.95rem}
       .hero-ctas{justify-content:center}
@@ -310,7 +309,6 @@
   <div class="geo geo-1"></div><div class="geo geo-2"></div><div class="geo geo-3"></div><div class="geo geo-4"></div>
   <div class="hero-content">
     <div class="hero-left">
-      <div class="hero-eyebrow"><span class="dot-live"></span><span data-i18n="hero.eyebrow">IT · Marketing · Automatización · IA</span></div>
       <h1 class="hero-title">
         <span data-i18n="hero.line1">Transformamos</span>
         <span data-i18n="hero.line2">tu empresa con</span>
@@ -473,7 +471,7 @@
         <p class="contact-desc" data-i18n="contact.desc">Contanos tu proyecto y en menos de 24hs te respondemos con una propuesta concreta. Sin compromiso.</p>
         <div class="cdetail">
           <div class="cdetail-icon"><svg viewBox="0 0 20 20"><rect x="2" y="4" width="16" height="12" rx="2"/><polyline points="2,4 10,11 18,4"/></svg></div>
-          <div class="cdetail-text"><strong data-i18n="contact.email.label">Email</strong>tomasgeneroso90@gmail.com</div>
+          <div class="cdetail-text"><strong data-i18n="contact.email.label">Email</strong>aioalmeira@gmail.com</div>
         </div>
         <div class="cdetail">
           <div class="cdetail-icon"><svg viewBox="0 0 20 20"><path d="M4 4h12a2 2 0 012 2v7a2 2 0 01-2 2H7l-4 3V6a2 2 0 012-2z"/></svg></div>
@@ -563,7 +561,7 @@ const T = {
   },
   en:{
     'nav.about':'About','nav.services':'Services','nav.work':'Work','nav.meeting':'Meeting','nav.cta':"Let's talk",'nav.contact':'Contact',
-    'hero.eyebrow':'IT · Marketing · Automation · AI','hero.line1':'We transform','hero.line2':'your business with',
+    'hero.eyebrow':'IT · Marketing · Automation · AI','hero.line1':'We transform','hero.line2':'businesses with',
     'hero.sub':'We combine engineering, artificial intelligence and digital marketing to build solutions that truly impact your business.',
     'hero.cta1':'Get started','hero.cta2':'View work →','hero.scroll':'Scroll',
     'hero.words':['AI','Automation','Marketing','Software','Strategy'],
