@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Solvys — Soluciones IT & Marketing con IA</title>
   <meta name="description" content="Transformamos empresas con tecnología, inteligencia artificial y marketing digital. Automatización, desarrollo web y consultoría estratégica.">
-  <!-- Vercel Analytics -->
   <script defer src="/_vercel/insights/script.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,13 +17,11 @@
       --primary-light: #2563EB;
       --primary-dark: #0D1F5C;
       --accent: #06B6D4;
-      --secondary: #E2E8F0;
       --bg-deep: #04080F;
       --bg-dark: #060D1F;
       --bg-mid: #081324;
       --text-primary: #F0F6FF;
       --text-muted: #7A90B8;
-      --card-border: rgba(6,182,212,0.14);
       --font: 'Space Grotesk', sans-serif;
       --mono: 'Space Mono', monospace;
       --spring: cubic-bezier(0.32,0.72,0,1);
@@ -34,11 +31,9 @@
     html { scroll-behavior: smooth; overflow-x: hidden; }
     body { font-family: var(--font); background: var(--bg-dark); color: var(--text-primary); overflow-x: hidden; max-width: 100vw; }
 
-    /* Grain overlay — breaks digital flatness */
     body::before {
       content: ''; position: fixed; inset: 0; z-index: 9998; pointer-events: none;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='350' height='350'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='350' height='350' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      opacity: 1;
     }
 
     ::-webkit-scrollbar { width: 3px; }
@@ -47,51 +42,25 @@
     ::selection { background: var(--accent); color: var(--bg-dark); }
 
     /* ── NAV ── */
-    .nav {
-      position: fixed; top: 1.25rem; left: 50%; transform: translateX(-50%);
-      z-index: 100; width: calc(100% - 2.5rem); max-width: 960px;
-    }
+    .nav { position: fixed; top: 1.25rem; left: 50%; transform: translateX(-50%); z-index: 100; width: calc(100% - 2.5rem); max-width: 960px; }
     .nav-pill {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0.7rem 1.5rem;
-      background: rgba(6,13,31,0.65);
+      padding: 0.7rem 1.5rem; background: rgba(6,13,31,0.65);
       backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
       border: 1px solid rgba(6,182,212,0.18); border-radius: 100px;
       transition: all 0.5s var(--spring);
     }
     .nav-pill.scrolled { background: rgba(4,8,15,0.92); box-shadow: 0 8px 40px rgba(0,0,0,0.5); }
-    .nav-logo {
-      display: flex; align-items: center; gap: 0.6rem;
-      text-decoration: none; font-weight: 700; font-size: 1.1rem;
-      color: var(--text-primary); letter-spacing: -0.02em;
-    }
-    .logo-box {
-      width: 30px; height: 30px;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      border-radius: 8px; display: flex; align-items: center;
-      justify-content: center; font-size: 13px; font-weight: 700; color: white;
-    }
+    .nav-logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; font-weight: 700; font-size: 1.1rem; color: var(--text-primary); letter-spacing: -0.02em; }
+    .logo-box { width: 30px; height: 30px; background: linear-gradient(135deg, var(--primary), var(--accent)); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: white; }
     .nav-links { display: flex; align-items: center; gap: 1.75rem; list-style: none; }
-    .nav-links a {
-      text-decoration: none; color: var(--text-muted); font-size: 0.875rem;
-      font-weight: 500; transition: color 0.3s ease;
-    }
+    .nav-links a { text-decoration: none; color: var(--text-muted); font-size: 0.875rem; font-weight: 500; transition: color 0.3s ease; }
     .nav-links a:hover { color: var(--accent); }
-    .nav-cta {
-      padding: 0.45rem 1.15rem;
-      background: var(--accent) !important;
-      color: var(--bg-dark) !important;
-      border-radius: 100px; font-weight: 700 !important;
-      transition: all 0.4s var(--spring) !important;
-    }
+    .nav-cta { padding: 0.45rem 1.15rem; background: var(--accent) !important; color: var(--bg-dark) !important; border-radius: 100px; font-weight: 700 !important; transition: all 0.4s var(--spring) !important; }
     .nav-cta:hover { background: var(--primary) !important; color: white !important; box-shadow: 0 6px 24px rgba(6,182,212,0.35); }
 
     .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
-    .hamburger span {
-      display: block; width: 22px; height: 2px;
-      background: var(--text-primary); border-radius: 2px;
-      transition: all 0.4s var(--spring); transform-origin: center;
-    }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--text-primary); border-radius: 2px; transition: all 0.4s var(--spring); transform-origin: center; }
     .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
     .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
@@ -99,18 +68,11 @@
     .mobile-menu {
       position: fixed; inset: 0; z-index: 99;
       background: rgba(4,8,15,0.97); backdrop-filter: blur(30px);
-      display: flex; flex-direction: column; align-items: center;
-      justify-content: center; gap: 2.5rem;
-      opacity: 0; pointer-events: none;
-      transition: opacity 0.45s var(--spring);
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem;
+      opacity: 0; pointer-events: none; transition: opacity 0.45s var(--spring);
     }
     .mobile-menu.open { opacity: 1; pointer-events: all; }
-    .mobile-menu a {
-      font-size: 2.25rem; font-weight: 700; color: var(--text-primary);
-      text-decoration: none; letter-spacing: -0.03em;
-      opacity: 0; transform: translateY(28px);
-      transition: all 0.55s var(--expo);
-    }
+    .mobile-menu a { font-size: 2.25rem; font-weight: 700; color: var(--text-primary); text-decoration: none; letter-spacing: -0.03em; opacity: 0; transform: translateY(28px); transition: all 0.55s var(--expo); }
     .mobile-menu.open a { opacity: 1; transform: translateY(0); }
     .mobile-menu.open a:nth-child(1) { transition-delay: 0.08s; }
     .mobile-menu.open a:nth-child(2) { transition-delay: 0.14s; }
@@ -119,176 +81,57 @@
     .mobile-menu a:hover { color: var(--accent); }
 
     /* ── HERO ── */
-    .hero {
-      position: relative; height: 100dvh;
-      display: flex; align-items: center; overflow: hidden;
-      background: var(--bg-deep);
-    }
+    .hero { position: relative; height: 100dvh; display: flex; align-items: center; overflow: hidden; background: var(--bg-deep); }
     #neural-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
-    .hero-glow {
-      position: absolute; width: 700px; height: 700px;
-      background: radial-gradient(circle, rgba(30,64,175,0.35) 0%, transparent 70%);
-      top: -150px; left: -150px; pointer-events: none;
-      animation: glow-breathe 7s ease-in-out infinite;
-    }
-    .hero-glow-2 {
-      position: absolute; width: 450px; height: 450px;
-      background: radial-gradient(circle, rgba(6,182,212,0.22) 0%, transparent 70%);
-      bottom: -50px; right: 8%; pointer-events: none;
-      animation: glow-breathe 9s ease-in-out infinite reverse;
-    }
-    @keyframes glow-breathe {
-      0%,100% { transform: scale(1); opacity: 0.7; }
-      50% { transform: scale(1.25); opacity: 1; }
-    }
+    .hero-glow { position: absolute; width: 700px; height: 700px; background: radial-gradient(circle, rgba(30,64,175,0.35) 0%, transparent 70%); top: -150px; left: -150px; pointer-events: none; animation: glow-breathe 7s ease-in-out infinite; }
+    .hero-glow-2 { position: absolute; width: 450px; height: 450px; background: radial-gradient(circle, rgba(6,182,212,0.22) 0%, transparent 70%); bottom: -50px; right: 8%; pointer-events: none; animation: glow-breathe 9s ease-in-out infinite reverse; }
+    @keyframes glow-breathe { 0%,100% { transform: scale(1); opacity: 0.7; } 50% { transform: scale(1.25); opacity: 1; } }
 
     .geo { position: absolute; pointer-events: none; }
-    .geo-1 {
-      width: 90px; height: 90px; top: 18%; right: 4%;
-      border: 1.5px solid rgba(6,182,212,0.22); border-radius: 20px;
-      animation: geo-spin 22s linear infinite;
-    }
-    .geo-2 {
-      width: 44px; height: 44px; bottom: 28%; left: 4%;
-      background: rgba(30,64,175,0.25); border-radius: 50%;
-      animation: geo-float 9s ease-in-out infinite;
-    }
-    .geo-3 {
-      width: 65px; height: 65px; top: 35%; left: 7%;
-      border: 1px solid rgba(6,182,212,0.15); border-radius: 50%;
-      animation: geo-spin 17s linear infinite reverse;
-    }
-    .geo-4 {
-      width: 30px; height: 30px; top: 60%; right: 12%;
-      border: 1px solid rgba(6,182,212,0.2); border-radius: 6px;
-      animation: geo-spin 12s linear infinite;
-    }
+    .geo-1 { width: 90px; height: 90px; top: 18%; right: 4%; border: 1.5px solid rgba(6,182,212,0.22); border-radius: 20px; animation: geo-spin 22s linear infinite; }
+    .geo-2 { width: 44px; height: 44px; bottom: 28%; left: 4%; background: rgba(30,64,175,0.25); border-radius: 50%; animation: geo-float 9s ease-in-out infinite; }
+    .geo-3 { width: 65px; height: 65px; top: 35%; left: 7%; border: 1px solid rgba(6,182,212,0.15); border-radius: 50%; animation: geo-spin 17s linear infinite reverse; }
+    .geo-4 { width: 30px; height: 30px; top: 60%; right: 12%; border: 1px solid rgba(6,182,212,0.2); border-radius: 6px; animation: geo-spin 12s linear infinite; }
     @keyframes geo-spin { to { transform: rotate(360deg); } }
-    @keyframes geo-float {
-      0%,100% { transform: translateY(0) scale(1); }
-      50% { transform: translateY(-22px) scale(1.12); }
-    }
+    @keyframes geo-float { 0%,100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-22px) scale(1.12); } }
 
-    .hero-content {
-      position: relative; z-index: 2;
-      max-width: 1200px; margin: 0 auto; padding: 6rem 2rem 3rem;
-      display: grid; grid-template-columns: 1fr 1fr;
-      align-items: center; gap: 4rem; width: 100%;
-    }
+    .hero-content { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; padding: 6rem 2rem 3rem; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 4rem; width: 100%; }
 
-    .hero-eyebrow {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.35rem 0.875rem;
-      background: rgba(6,182,212,0.08);
-      border: 1px solid rgba(6,182,212,0.28); border-radius: 100px;
-      font-size: 0.68rem; font-weight: 600;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 1.5rem;
-      max-width: 100%; flex-wrap: wrap;
-    }
-    .dot-live {
-      width: 6px; height: 6px; background: var(--accent); border-radius: 50%;
-      animation: dot-pulse 2s ease-in-out infinite;
-    }
-    @keyframes dot-pulse {
-      0%,100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.6); }
-    }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.35rem 0.875rem; background: rgba(6,182,212,0.08); border: 1px solid rgba(6,182,212,0.28); border-radius: 100px; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; max-width: 100%; flex-wrap: wrap; }
+    .dot-live { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: dot-pulse 2s ease-in-out infinite; }
+    @keyframes dot-pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.6); } }
 
-    .hero-title {
-      font-size: clamp(2.4rem, 5vw, 4.5rem);
-      font-weight: 700; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 1.5rem;
-    }
+    .hero-title { font-size: clamp(2.4rem, 5vw, 4.5rem); font-weight: 700; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 1.5rem; }
     .hero-title span { display: block; }
     .hero-title > span:last-child { min-height: 2.2em; }
     .tw-accent { color: var(--accent); }
-    .tw-cursor {
-      display: inline-block; width: 3px; height: 0.8em;
-      background: var(--accent); margin-left: 3px;
-      vertical-align: text-bottom; animation: cursor-blink 0.75s step-end infinite;
-    }
+    .tw-cursor { display: inline-block; width: 3px; height: 0.8em; background: var(--accent); margin-left: 3px; vertical-align: text-bottom; animation: cursor-blink 0.75s step-end infinite; }
     @keyframes cursor-blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
 
-    .hero-sub {
-      font-size: 1.05rem; color: var(--text-muted); line-height: 1.75;
-      margin-bottom: 2.5rem; max-width: 500px;
-    }
+    .hero-sub { font-size: 1.05rem; color: var(--text-muted); line-height: 1.75; margin-bottom: 2.5rem; max-width: 500px; }
     .hero-ctas { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
 
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.85rem 1.75rem; background: var(--accent);
-      color: var(--bg-dark); border-radius: 100px;
-      font-weight: 700; font-size: 0.9rem; text-decoration: none;
-      border: none; cursor: pointer; font-family: var(--font);
-      transition: all 0.5s var(--spring); position: relative; overflow: hidden;
-    }
-    .btn-primary::after {
-      content: ''; position: absolute; inset: 0;
-      background: rgba(255,255,255,0.12); opacity: 0;
-      transition: opacity 0.3s ease;
-    }
+    .btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 1.75rem; background: var(--accent); color: var(--bg-dark); border-radius: 100px; font-weight: 700; font-size: 0.9rem; text-decoration: none; border: none; cursor: pointer; font-family: var(--font); transition: all 0.5s var(--spring); position: relative; overflow: hidden; }
+    .btn-primary::after { content: ''; position: absolute; inset: 0; background: rgba(255,255,255,0.12); opacity: 0; transition: opacity 0.3s ease; }
     .btn-primary:hover::after { opacity: 1; }
     .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(6,182,212,0.4); }
     .btn-primary:active { transform: scale(0.97); }
-    .btn-icon {
-      width: 26px; height: 26px; background: rgba(0,0,0,0.18); border-radius: 50%;
-      display: flex; align-items: center; justify-content: center; font-size: 13px;
-      transition: transform 0.4s var(--spring);
-    }
+    .btn-icon { width: 26px; height: 26px; background: rgba(0,0,0,0.18); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; transition: transform 0.4s var(--spring); }
     .btn-primary:hover .btn-icon { transform: translate(2px,-2px) scale(1.1); }
-
-    .btn-ghost {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.85rem 1.75rem; background: transparent;
-      color: var(--text-primary); border-radius: 100px;
-      font-weight: 600; font-size: 0.9rem; text-decoration: none;
-      border: 1px solid rgba(255,255,255,0.14);
-      transition: all 0.4s var(--spring);
-    }
+    .btn-ghost { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 1.75rem; background: transparent; color: var(--text-primary); border-radius: 100px; font-weight: 600; font-size: 0.9rem; text-decoration: none; border: 1px solid rgba(255,255,255,0.14); transition: all 0.4s var(--spring); }
     .btn-ghost:hover { border-color: var(--accent); color: var(--accent); background: rgba(6,182,212,0.05); }
 
-    /* ROBOT */
     .hero-robot { display: flex; align-items: center; justify-content: center; position: relative; }
-    .robot-wrapper {
-      position: relative; width: 100%; max-width: 430px;
-      animation: robot-float 7s ease-in-out infinite;
-    }
-    @keyframes robot-float {
-      0%,100% { transform: translateY(0) rotate(0deg); }
-      33% { transform: translateY(-18px) rotate(1.2deg); }
-      66% { transform: translateY(-9px) rotate(-0.6deg); }
-    }
-    .robot-aura {
-      position: absolute; inset: -30px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(6,182,212,0.12) 0%, transparent 65%);
-      animation: glow-breathe 4s ease-in-out infinite;
-    }
+    .robot-wrapper { position: relative; width: 100%; max-width: 430px; animation: robot-float 7s ease-in-out infinite; }
+    @keyframes robot-float { 0%,100% { transform: translateY(0) rotate(0deg); } 33% { transform: translateY(-18px) rotate(1.2deg); } 66% { transform: translateY(-9px) rotate(-0.6deg); } }
+    .robot-aura { position: absolute; inset: -30px; border-radius: 50%; background: radial-gradient(circle, rgba(6,182,212,0.12) 0%, transparent 65%); animation: glow-breathe 4s ease-in-out infinite; }
 
-    /* SCROLL INDICATOR */
-    .scroll-hint {
-      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
-      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
-      z-index: 2; animation: fade-up 1s var(--expo) 1.8s both;
-    }
+    .scroll-hint { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.5rem; z-index: 2; animation: fade-up 1s var(--expo) 1.8s both; }
     .scroll-hint span { font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-muted); }
-    .scroll-line {
-      width: 1px; height: 44px;
-      background: linear-gradient(to bottom, var(--accent), transparent);
-      animation: line-drop 2s ease-in-out infinite;
-    }
-    @keyframes line-drop {
-      0% { transform: scaleY(0); transform-origin: top; opacity: 0; }
-      50% { transform: scaleY(1); transform-origin: top; opacity: 1; }
-      51% { transform: scaleY(1); transform-origin: bottom; }
-      100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
-    }
+    .scroll-line { width: 1px; height: 44px; background: linear-gradient(to bottom, var(--accent), transparent); animation: line-drop 2s ease-in-out infinite; }
+    @keyframes line-drop { 0% { transform: scaleY(0); transform-origin: top; opacity: 0; } 50% { transform: scaleY(1); transform-origin: top; opacity: 1; } 51% { transform: scaleY(1); transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; } }
 
-    /* ── HERO ENTRY ANIMATIONS ── */
-    @keyframes fade-up {
-      from { opacity: 0; transform: translateY(35px); filter: blur(6px); }
-      to   { opacity: 1; transform: translateY(0); filter: blur(0); }
-    }
+    @keyframes fade-up { from { opacity: 0; transform: translateY(35px); filter: blur(6px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
     .hero-left > * { animation: fade-up 0.85s var(--expo) both; }
     .hero-left > *:nth-child(1) { animation-delay: 0.25s; }
     .hero-left > *:nth-child(2) { animation-delay: 0.4s; }
@@ -296,32 +139,12 @@
     .hero-left > *:nth-child(4) { animation-delay: 0.7s; }
     .hero-robot { animation: fade-up 1.1s var(--expo) 0.5s both; }
 
-    /* ── REVEAL ON SCROLL ── */
-    .reveal {
-      opacity: 0; transform: translateY(42px); filter: blur(4px);
-      transition: opacity 0.85s var(--expo), transform 0.85s var(--expo), filter 0.85s ease;
-    }
+    .reveal { opacity: 0; transform: translateY(42px); filter: blur(4px); transition: opacity 0.85s var(--expo), transform 0.85s var(--expo), filter 0.85s ease; }
     .reveal.in { opacity: 1; transform: translateY(0); filter: blur(0); }
-    .d1 { transition-delay: 0.08s; }
-    .d2 { transition-delay: 0.16s; }
-    .d3 { transition-delay: 0.24s; }
-    .d4 { transition-delay: 0.32s; }
-    .d5 { transition-delay: 0.40s; }
+    .d1 { transition-delay: 0.08s; } .d2 { transition-delay: 0.16s; } .d3 { transition-delay: 0.24s; } .d4 { transition-delay: 0.32s; }
 
-    /* ── SECTION COMMONS ── */
-    .eyebrow {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.35rem 0.875rem;
-      border: 1px solid rgba(6,182,212,0.28); border-radius: 100px;
-      font-size: 0.65rem; font-weight: 600;
-      letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 1.5rem;
-    }
-    .section-title {
-      font-size: clamp(1.9rem, 4vw, 3.4rem); font-weight: 700;
-      letter-spacing: -0.03em; line-height: 1.08; margin-bottom: 1.25rem;
-      text-wrap: balance;
-    }
+    .eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.35rem 0.875rem; border: 1px solid rgba(6,182,212,0.28); border-radius: 100px; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; }
+    .section-title { font-size: clamp(1.9rem, 4vw, 3.4rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.08; margin-bottom: 1.25rem; text-wrap: balance; }
     .accent { color: var(--accent); }
     .muted { color: var(--text-muted); }
 
@@ -331,250 +154,177 @@
     .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
     .about-desc { font-size: 1rem; color: var(--text-muted); line-height: 1.85; margin-bottom: 1.25rem; }
     .about-desc strong { color: var(--text-primary); font-weight: 600; }
-
     .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
-    .stat-shell {
-      padding: 1.5px; border-radius: 22px;
-      background: linear-gradient(135deg, rgba(6,182,212,0.2), rgba(30,64,175,0.1));
-      transition: all 0.5s var(--spring);
-    }
+    .stat-shell { padding: 1.5px; border-radius: 22px; background: linear-gradient(135deg, rgba(6,182,212,0.2), rgba(30,64,175,0.1)); transition: all 0.5s var(--spring); }
     .stat-shell:hover { background: linear-gradient(135deg, rgba(6,182,212,0.45), rgba(30,64,175,0.3)); transform: translateY(-5px); }
-    .stat-core {
-      background: var(--bg-deep); border-radius: 21px; padding: 1.5rem;
-      box-shadow: inset 0 1px 1px rgba(255,255,255,0.04);
-    }
-    .stat-num {
-      font-size: 2.4rem; font-weight: 700; color: var(--accent);
-      letter-spacing: -0.03em; font-variant-numeric: tabular-nums;
-    }
+    .stat-core { background: var(--bg-deep); border-radius: 21px; padding: 1.5rem; box-shadow: inset 0 1px 1px rgba(255,255,255,0.04); }
+    .stat-num { font-size: 2.4rem; font-weight: 700; color: var(--accent); letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
     .stat-lbl { font-size: 0.82rem; color: var(--text-muted); margin-top: 0.2rem; }
 
     /* ── SERVICES ── */
     .services { background: var(--bg-deep); padding: 9rem 0; }
     .services-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
     .services-header { text-align: center; max-width: 580px; margin: 0 auto 4rem; }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3,1fr);
-      gap: 1.25rem;
-    }
-    .scard {
-      padding: 2rem; border-radius: 24px; position: relative; overflow: hidden;
-      background: rgba(6,13,31,0.85);
-      border: 1px solid rgba(6,182,212,0.1);
-      transition: all 0.55s var(--spring); cursor: default;
-    }
-    .scard::before {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(6,182,212,0.06) 0%, transparent 55%);
-      opacity: 0; transition: opacity 0.45s ease; border-radius: 24px;
-    }
+    .services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; }
+    .scard { padding: 2rem; border-radius: 24px; position: relative; overflow: hidden; background: rgba(6,13,31,0.85); border: 1px solid rgba(6,182,212,0.1); transition: all 0.55s var(--spring); cursor: default; }
+    .scard::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(6,182,212,0.06) 0%, transparent 55%); opacity: 0; transition: opacity 0.45s ease; border-radius: 24px; }
     .scard:hover { border-color: rgba(6,182,212,0.38); transform: translateY(-7px); box-shadow: 0 22px 60px rgba(6,182,212,0.08), 0 0 0 1px rgba(6,182,212,0.18); }
     .scard:hover::before { opacity: 1; }
     .scard--wide { grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-
-    /* Editorial number system — replaces emoji icons */
-    .scard-num {
-      position: absolute; top: 1.5rem; right: 1.75rem;
-      font-family: var(--mono); font-size: 5.5rem; font-weight: 700;
-      color: rgba(6,182,212,0.042); letter-spacing: -0.05em;
-      line-height: 1; user-select: none; pointer-events: none;
-      transition: color 0.55s ease;
-    }
+    .scard-num { position: absolute; top: 1.5rem; right: 1.75rem; font-family: var(--mono); font-size: 5.5rem; font-weight: 700; color: rgba(6,182,212,0.042); letter-spacing: -0.05em; line-height: 1; user-select: none; pointer-events: none; transition: color 0.55s ease; }
     .scard:hover .scard-num { color: rgba(6,182,212,0.088); }
-    .scard-rule {
-      width: 24px; height: 2px;
-      background: var(--accent); opacity: 0.8;
-      margin-bottom: 1.5rem;
-    }
-
+    .scard-rule { width: 24px; height: 2px; background: var(--accent); opacity: 0.8; margin-bottom: 1.5rem; }
     .scard-title { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.7rem; position: relative; z-index: 1; }
     .scard-desc { font-size: 0.87rem; color: var(--text-muted); line-height: 1.72; position: relative; z-index: 1; }
     .scard-tags { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 1.5rem; position: relative; z-index: 1; }
-    .pill {
-      padding: 0.22rem 0.65rem; border-radius: 100px;
-      background: rgba(6,182,212,0.07); border: 1px solid rgba(6,182,212,0.2);
-      font-size: 0.68rem; color: var(--accent); font-weight: 500; letter-spacing: 0.04em;
-    }
+    .pill { padding: 0.22rem 0.65rem; border-radius: 100px; background: rgba(6,182,212,0.07); border: 1px solid rgba(6,182,212,0.2); font-size: 0.68rem; color: var(--accent); font-weight: 500; letter-spacing: 0.04em; }
     .scard-visual { display: flex; align-items: center; justify-content: center; min-height: 180px; position: relative; z-index: 1; }
 
-    /* ── PORTFOLIO ── */
+    /* ── SOLUTIONS (Trabajos) ── */
     .portfolio { background: var(--bg-mid); padding: 9rem 0; }
-    .portfolio-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-    .portfolio-header { text-align: center; max-width: 580px; margin: 0 auto 4rem; }
-    .portfolio-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.5rem; }
+    .portfolio-inner { max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
+    .portfolio-header { text-align: center; max-width: 620px; margin: 0 auto 3rem; }
 
-    .pcard {
-      border-radius: 24px; overflow: hidden; position: relative;
-      aspect-ratio: 4/3; cursor: pointer;
-      background: var(--bg-deep); border: 1px solid rgba(6,182,212,0.1);
-      transition: all 0.6s var(--spring);
+    .sol-filters { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 3rem; flex-wrap: wrap; justify-content: center; }
+    .sol-filter { padding: 0.5rem 1.25rem; border-radius: 100px; border: 1px solid rgba(6,182,212,0.18); background: transparent; color: var(--text-muted); font-family: var(--font); font-size: 0.8rem; font-weight: 500; cursor: pointer; transition: all 0.3s var(--spring); }
+    .sol-filter:hover { border-color: rgba(6,182,212,0.4); color: var(--text-primary); }
+    .sol-filter.active { background: rgba(6,182,212,0.1); border-color: var(--accent); color: var(--accent); font-weight: 600; }
+
+    .sol-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; }
+
+    .sol-card {
+      background: rgba(6,13,31,0.9); border: 1px solid rgba(6,182,212,0.08);
+      border-radius: 16px; padding: 1.5rem; cursor: pointer;
+      position: relative; overflow: hidden;
+      transition: all 0.45s var(--spring);
+      display: flex; flex-direction: column;
+      animation: fade-up 0.6s var(--expo) both;
     }
-    .pcard:hover { transform: translateY(-9px); border-color: rgba(6,182,212,0.35); box-shadow: 0 28px 60px rgba(6,182,212,0.1); }
-    .pcard-bg { position: absolute; inset: 0; opacity: 0.18; transition: opacity 0.5s ease; }
-    .pcard:hover .pcard-bg { opacity: 0.3; }
+    .sol-card::after {
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      height: 2px; background: linear-gradient(90deg, var(--accent), var(--primary));
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.4s var(--expo);
+    }
+    .sol-card:hover { border-color: rgba(6,182,212,0.28); transform: translateY(-5px); box-shadow: 0 18px 50px rgba(6,182,212,0.07); }
+    .sol-card:hover::after { transform: scaleX(1); }
+    .sol-card.hidden { display: none; }
 
-    /* Abstract SVG art per card — replaces emoji */
-    .pcard-art {
-      position: absolute; inset: 0;
+    .sol-cat { font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 0.75rem; font-family: var(--mono); opacity: 0.85; }
+    .sol-title { font-size: 0.98rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.55rem; line-height: 1.25; }
+    .sol-desc { font-size: 0.78rem; color: var(--text-muted); line-height: 1.65; margin-bottom: 1.1rem; flex: 1; }
+    .sol-feats { display: flex; flex-direction: column; gap: 0.28rem; margin-bottom: 1.1rem; }
+    .sol-feat { font-size: 0.7rem; color: rgba(122,144,184,0.8); display: flex; align-items: center; gap: 0.4rem; }
+    .sol-feat::before { content: ''; width: 3px; height: 3px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+    .sol-link { font-size: 0.7rem; color: var(--accent); font-weight: 600; letter-spacing: 0.05em; margin-top: auto; display: flex; align-items: center; gap: 0.3rem; transition: gap 0.3s ease; user-select: none; }
+    .sol-card:hover .sol-link { gap: 0.55rem; }
+    .sol-type-badge { position: absolute; top: 1rem; right: 1rem; padding: 0.15rem 0.5rem; border-radius: 100px; font-size: 0.55rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+    .sol-type-it { background: rgba(30,64,175,0.18); border: 1px solid rgba(30,64,175,0.3); color: #60A5FA; }
+    .sol-type-mkt { background: rgba(6,182,212,0.1); border: 1px solid rgba(6,182,212,0.25); color: var(--accent); }
+
+    /* ── MODAL ── */
+    .sol-modal-overlay {
+      position: fixed; inset: 0; z-index: 300;
+      background: rgba(2,5,12,0.88);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      display: flex; align-items: center; justify-content: center; padding: 1.5rem;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+    }
+    .sol-modal-overlay.open { opacity: 1; pointer-events: all; }
+    .sol-modal-card {
+      background: #060e1e; border: 1px solid rgba(6,182,212,0.2);
+      border-radius: 24px; max-width: 660px; width: 100%; max-height: 88vh;
+      overflow-y: auto; position: relative;
+      box-shadow: 0 48px 140px rgba(0,0,0,0.7), 0 0 0 1px rgba(6,182,212,0.06);
+      transform: scale(0.93) translateY(20px);
+      transition: transform 0.45s var(--expo);
+    }
+    .sol-modal-overlay.open .sol-modal-card { transform: scale(1) translateY(0); }
+    .sol-modal-close {
+      position: sticky; top: 1.25rem; float: right; margin: 1.25rem 1.25rem 0 0;
+      width: 30px; height: 30px; border-radius: 50%;
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+      color: var(--text-muted); font-size: 1rem; cursor: pointer;
       display: flex; align-items: center; justify-content: center;
+      transition: all 0.25s ease; font-family: var(--font); z-index: 10;
     }
-    .pcard-art svg { transition: opacity 0.5s ease, transform 0.6s var(--spring); opacity: 0.6; }
-    .pcard:hover .pcard-art svg { opacity: 0.85; transform: scale(1.05); }
+    .sol-modal-close:hover { background: rgba(6,182,212,0.15); border-color: var(--accent); color: white; }
 
-    .pcard-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(4,8,15,0.97) 0%, rgba(4,8,15,0.35) 52%, transparent 100%);
-      display: flex; flex-direction: column; justify-content: flex-end; padding: 2rem;
+    .sol-modal-head {
+      padding: 2rem 2.5rem 1.5rem;
+      border-bottom: 1px solid rgba(6,182,212,0.07);
     }
-    .pcard-cat {
-      font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--accent); font-weight: 600; margin-bottom: 0.45rem;
+    .sol-modal-cat { font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 0.5rem; font-family: var(--mono); }
+    .sol-modal-title { font-size: clamp(1.5rem, 3vw, 2.1rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.85rem; }
+    .sol-modal-desc { font-size: 0.95rem; color: var(--text-muted); line-height: 1.8; }
+
+    .sol-modal-body { padding: 1.75rem 2.5rem 2.5rem; }
+    .sol-section-lbl { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(122,144,184,0.5); font-weight: 600; margin-bottom: 0.9rem; }
+    .sol-modal-feats { display: grid; grid-template-columns: 1fr 1fr; gap: 0.55rem 2rem; margin-bottom: 2rem; }
+    .sol-modal-feat { font-size: 0.85rem; color: var(--text-primary); display: flex; align-items: center; gap: 0.5rem; }
+    .sol-modal-feat::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+    .sol-modal-stack { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 2rem; }
+    .sol-stack-tag { padding: 0.25rem 0.7rem; border-radius: 100px; background: rgba(30,64,175,0.1); border: 1px solid rgba(30,64,175,0.22); font-size: 0.68rem; color: var(--text-muted); font-weight: 500; letter-spacing: 0.03em; }
+    .sol-modal-cta {
+      display: block; text-align: center; padding: 0.95rem 1.5rem;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      color: white; border-radius: 12px; font-weight: 700; text-decoration: none;
+      font-size: 0.95rem; transition: all 0.4s var(--spring); letter-spacing: 0.02em;
     }
-    .pcard-title { font-size: 1.35rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.45rem; }
-    .pcard-desc { font-size: 0.83rem; color: var(--text-muted); line-height: 1.65; max-width: 380px; }
+    .sol-modal-cta:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(6,182,212,0.3); }
 
     /* ── PLANNER ── */
     .planner { background: var(--bg-deep); padding: 9rem 0; }
     .planner-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-    .planner-grid {
-      display: grid; grid-template-columns: 1fr 1.6fr;
-      gap: 5rem; align-items: start; margin-top: 3.5rem;
-    }
-    .planner-info-title {
-      font-size: clamp(1.7rem, 3vw, 2.6rem); font-weight: 700;
-      letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 1rem;
-    }
-    .planner-desc {
-      font-size: 0.95rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 2rem;
-    }
+    .planner-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 5rem; align-items: start; margin-top: 3.5rem; }
+    .planner-desc { font-size: 0.95rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 2rem; }
     .planner-steps { display: flex; flex-direction: column; gap: 1.1rem; }
-    .planner-step {
-      display: flex; align-items: flex-start; gap: 1rem;
-      padding: 1rem 1.25rem;
-      background: rgba(30,64,175,0.06); border: 1px solid rgba(6,182,212,0.1);
-      border-radius: 14px; transition: all 0.4s var(--spring);
-    }
+    .planner-step { display: flex; align-items: flex-start; gap: 1rem; padding: 1rem 1.25rem; background: rgba(30,64,175,0.06); border: 1px solid rgba(6,182,212,0.1); border-radius: 14px; transition: all 0.4s var(--spring); }
     .planner-step:hover { border-color: rgba(6,182,212,0.3); background: rgba(6,182,212,0.04); }
-    .step-num {
-      width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
-      background: rgba(6,182,212,0.12); border: 1px solid rgba(6,182,212,0.3);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.72rem; font-weight: 700; color: var(--accent);
-      font-family: var(--mono);
-    }
+    .step-num { width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0; background: rgba(6,182,212,0.12); border: 1px solid rgba(6,182,212,0.3); display: flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: 700; color: var(--accent); font-family: var(--mono); }
     .step-text strong { display: block; font-size: 0.88rem; font-weight: 600; margin-bottom: 0.15rem; }
     .step-text span { font-size: 0.78rem; color: var(--text-muted); line-height: 1.5; }
-
-    .calendly-shell {
-      background: rgba(6,13,31,0.6); border: 1px solid rgba(6,182,212,0.16);
-      border-radius: 28px; padding: 6px; overflow: hidden;
-    }
-    .calendly-core {
-      background: rgba(12,22,45,0.95); border-radius: 23px; overflow: hidden;
-      box-shadow: inset 0 1px 1px rgba(255,255,255,0.04);
-    }
+    .calendly-shell { background: rgba(6,13,31,0.6); border: 1px solid rgba(6,182,212,0.16); border-radius: 28px; padding: 6px; overflow: hidden; }
+    .calendly-core { background: rgba(12,22,45,0.95); border-radius: 23px; overflow: hidden; box-shadow: inset 0 1px 1px rgba(255,255,255,0.04); }
     .calendly-inline-widget { border-radius: 23px; overflow: hidden; }
 
-    @media (max-width: 768px) {
-      .planner-grid { grid-template-columns: 1fr; gap: 3rem; }
-      .calendly-inline-widget { height: 580px !important; }
-    }
-
-    /* ── WHATSAPP FLOAT ── */
-    .wa-float {
-      position: fixed; bottom: 1.75rem; right: 1.75rem; z-index: 98;
-      width: 56px; height: 56px; border-radius: 50%;
-      background: #25D366; box-shadow: 0 8px 30px rgba(37,211,102,0.4);
-      display: flex; align-items: center; justify-content: center;
-      text-decoration: none; transition: all 0.4s var(--spring);
-      animation: wa-pop 0.6s var(--expo) 2s both;
-    }
+    /* ── WHATSAPP ── */
+    .wa-float { position: fixed; bottom: 1.75rem; right: 1.75rem; z-index: 98; width: 56px; height: 56px; border-radius: 50%; background: #25D366; box-shadow: 0 8px 30px rgba(37,211,102,0.4); display: flex; align-items: center; justify-content: center; text-decoration: none; transition: all 0.4s var(--spring); animation: wa-pop 0.6s var(--expo) 2s both; }
     .wa-float:hover { transform: scale(1.12); box-shadow: 0 12px 40px rgba(37,211,102,0.55); }
     .wa-float svg { width: 28px; height: 28px; }
-    @keyframes wa-pop {
-      from { opacity: 0; transform: scale(0.5); }
-      to { opacity: 1; transform: scale(1); }
-    }
+    @keyframes wa-pop { from { opacity: 0; transform: scale(0.5); } to { opacity: 1; transform: scale(1); } }
 
     /* ── CONTACT ── */
     .contact { background: var(--bg-deep); padding: 9rem 0; position: relative; overflow: hidden; }
-    .contact-glow {
-      position: absolute; width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(6,182,212,0.1) 0%, transparent 70%);
-      top: 50%; left: 50%; transform: translate(-50%,-50%); pointer-events: none;
-    }
+    .contact-glow { position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(6,182,212,0.1) 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%,-50%); pointer-events: none; }
     .contact-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 2; }
     .contact-grid { display: grid; grid-template-columns: 1fr 1.45fr; gap: 6rem; align-items: start; }
-
     .contact-title { font-size: clamp(1.8rem, 3.5vw, 3rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.08; margin-bottom: 1.25rem; }
     .contact-desc { font-size: 0.98rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 2.5rem; }
     .cdetail { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.1rem; }
-    .cdetail-icon {
-      width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
-      background: rgba(6,182,212,0.08); border: 1px solid rgba(6,182,212,0.2);
-      display: flex; align-items: center; justify-content: center;
-    }
-    .cdetail-icon svg {
-      width: 20px; height: 20px;
-      stroke: var(--accent); fill: none;
-      stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
-    }
+    .cdetail-icon { width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0; background: rgba(6,182,212,0.08); border: 1px solid rgba(6,182,212,0.2); display: flex; align-items: center; justify-content: center; }
+    .cdetail-icon svg { width: 20px; height: 20px; stroke: var(--accent); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
     .cdetail-text { font-size: 0.88rem; color: var(--text-muted); }
     .cdetail-text strong { display: block; color: var(--text-primary); font-weight: 600; margin-bottom: 2px; font-size: 0.9rem; }
 
-    /* Form — double bezel */
-    .form-shell {
-      background: rgba(6,13,31,0.6); border: 1px solid rgba(6,182,212,0.16);
-      border-radius: 28px; padding: 6px;
-    }
-    .form-core {
-      background: rgba(12,22,45,0.9); border-radius: 23px;
-      padding: 2.5rem; box-shadow: inset 0 1px 1px rgba(255,255,255,0.04);
-    }
+    .form-shell { background: rgba(6,13,31,0.6); border: 1px solid rgba(6,182,212,0.16); border-radius: 28px; padding: 6px; }
+    .form-core { background: rgba(12,22,45,0.9); border-radius: 23px; padding: 2.5rem; box-shadow: inset 0 1px 1px rgba(255,255,255,0.04); }
     .fgroup { margin-bottom: 1.2rem; }
-    .flabel {
-      display: block; font-size: 0.72rem; font-weight: 600;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--text-muted); margin-bottom: 0.5rem;
-    }
-    .finput {
-      width: 100%; padding: 0.875rem 1.2rem;
-      background: rgba(30,64,175,0.05); border: 1px solid rgba(6,182,212,0.14);
-      border-radius: 14px; color: var(--text-primary); font-family: var(--font);
-      font-size: 0.95rem; transition: all 0.4s var(--spring); outline: none;
-    }
+    .flabel { display: block; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; }
+    .finput { width: 100%; padding: 0.875rem 1.2rem; background: rgba(30,64,175,0.05); border: 1px solid rgba(6,182,212,0.14); border-radius: 14px; color: var(--text-primary); font-family: var(--font); font-size: 0.95rem; transition: all 0.4s var(--spring); outline: none; }
     .finput::placeholder { color: rgba(122,144,184,0.45); }
     .finput:focus { border-color: var(--accent); background: rgba(6,182,212,0.04); box-shadow: 0 0 0 3px rgba(6,182,212,0.1); }
     textarea.finput { resize: none; min-height: 130px; }
     .frow { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-
-    .submit-btn {
-      width: 100%; margin-top: 0.5rem; padding: 1rem;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-      color: white; border: none; border-radius: 14px;
-      font-family: var(--font); font-size: 1rem; font-weight: 700;
-      cursor: pointer; letter-spacing: 0.02em;
-      transition: all 0.5s var(--spring); position: relative; overflow: hidden;
-    }
-    .submit-btn::after {
-      content: ''; position: absolute; inset: 0;
-      background: rgba(255,255,255,0.1); opacity: 0; transition: opacity 0.3s ease;
-    }
+    .submit-btn { width: 100%; margin-top: 0.5rem; padding: 1rem; background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); color: white; border: none; border-radius: 14px; font-family: var(--font); font-size: 1rem; font-weight: 700; cursor: pointer; letter-spacing: 0.02em; transition: all 0.5s var(--spring); position: relative; overflow: hidden; }
+    .submit-btn::after { content: ''; position: absolute; inset: 0; background: rgba(255,255,255,0.1); opacity: 0; transition: opacity 0.3s ease; }
     .submit-btn:hover::after { opacity: 1; }
     .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(6,182,212,0.38); }
     .submit-btn:active { transform: scale(0.98); }
 
     /* ── FOOTER ── */
-    .footer {
-      background: var(--bg-deep); border-top: 1px solid rgba(6,182,212,0.07);
-      padding: 2.5rem 2rem;
-    }
-    .footer-inner {
-      max-width: 1200px; margin: 0 auto;
-      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;
-    }
+    .footer { background: var(--bg-deep); border-top: 1px solid rgba(6,182,212,0.07); padding: 2.5rem 2rem; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; }
     .footer-logo { display: flex; align-items: center; gap: 0.65rem; text-decoration: none; color: var(--text-primary); font-weight: 700; }
     .footer-tagline { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.3rem; padding-left: 2.65rem; }
     .footer-links { display: flex; gap: 1.5rem; }
@@ -583,10 +333,9 @@
     .footer-copy { font-size: 0.78rem; color: rgba(122,144,184,0.4); }
 
     /* ── RESPONSIVE ── */
+    @media (max-width: 1100px) { .sol-grid { grid-template-columns: repeat(3,1fr); } }
     @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .hamburger { display: flex; }
-
+      .nav-links { display: none; } .hamburger { display: flex; }
       .hero { height: auto; min-height: 100dvh; overflow: hidden; }
       .hero-content { grid-template-columns: 1fr; gap: 2rem; text-align: center; padding: 6rem 1.25rem 2rem; width: 100%; }
       .hero-left { width: 100%; min-width: 0; }
@@ -598,17 +347,20 @@
       .hero-ctas { justify-content: center; }
       .geo-1,.geo-2,.geo-3,.geo-4 { display: none; }
       .hero-glow, .hero-glow-2 { width: 280px; height: 280px; }
-
       .about-grid { grid-template-columns: 1fr; gap: 3.5rem; }
       .services-grid { grid-template-columns: 1fr; }
       .scard--wide { grid-column: span 1; grid-template-columns: 1fr; }
-      .portfolio-grid { grid-template-columns: 1fr !important; }
-      .pcard { aspect-ratio: 4/3 !important; }
+      .sol-grid { grid-template-columns: repeat(2,1fr); }
+      .sol-modal-feats { grid-template-columns: 1fr; }
+      .sol-modal-head, .sol-modal-body { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .planner-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .calendly-inline-widget { height: 580px !important; }
       .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
       .frow { grid-template-columns: 1fr; }
       .footer-inner { flex-direction: column; text-align: center; }
       .footer-tagline { padding-left: 0; }
     }
+    @media (max-width: 480px) { .sol-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -625,10 +377,7 @@
 <!-- NAV -->
 <nav class="nav">
   <div class="nav-pill" id="navPill">
-    <a href="#" class="nav-logo">
-      <div class="logo-box">S</div>
-      SOLVYS
-    </a>
+    <a href="#" class="nav-logo"><div class="logo-box">S</div>SOLVYS</a>
     <ul class="nav-links">
       <li><a href="#nosotros">Nosotros</a></li>
       <li><a href="#servicios">Servicios</a></li>
@@ -636,161 +385,83 @@
       <li><a href="#planner">Reunión</a></li>
       <li><a href="#contacto" class="nav-cta">Hablemos</a></li>
     </ul>
-    <div class="hamburger" id="ham" onclick="toggleMobile()">
-      <span></span><span></span><span></span>
-    </div>
+    <div class="hamburger" id="ham" onclick="toggleMobile()"><span></span><span></span><span></span></div>
   </div>
 </nav>
 
-<!-- WHATSAPP FLOATING -->
+<!-- WHATSAPP -->
 <a href="https://wa.me/+5492923503895?text=Hola%20Solvys%2C%20me%20gustar%C3%ADa%20consultarles%20sobre%20sus%20servicios" target="_blank" rel="noopener" class="wa-float" title="Escribinos por WhatsApp">
-  <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-  </svg>
+  <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
+
+<!-- SOLUTION MODAL -->
+<div class="sol-modal-overlay" id="solModal">
+  <div class="sol-modal-card" id="solModalCard">
+    <button class="sol-modal-close" id="solModalClose">&times;</button>
+    <div id="solModalContent"></div>
+  </div>
+</div>
 
 <!-- HERO -->
 <section class="hero">
   <canvas id="neural-canvas"></canvas>
-  <div class="hero-glow"></div>
-  <div class="hero-glow-2"></div>
-  <div class="geo geo-1"></div>
-  <div class="geo geo-2"></div>
-  <div class="geo geo-3"></div>
-  <div class="geo geo-4"></div>
-
+  <div class="hero-glow"></div><div class="hero-glow-2"></div>
+  <div class="geo geo-1"></div><div class="geo geo-2"></div><div class="geo geo-3"></div><div class="geo geo-4"></div>
   <div class="hero-content">
     <div class="hero-left">
-      <div class="hero-eyebrow">
-        <span class="dot-live"></span>
-        IT · Marketing · Automatización · IA
-      </div>
+      <div class="hero-eyebrow"><span class="dot-live"></span>IT · Marketing · Automatización · IA</div>
       <h1 class="hero-title">
         <span>Transformamos</span>
         <span>tu empresa con</span>
         <span><span class="tw-accent" id="tw"></span><span class="tw-cursor"></span></span>
       </h1>
-      <p class="hero-sub">
-        Combinamos ingeniería, inteligencia artificial y marketing digital para construir soluciones que realmente impactan tu negocio.
-      </p>
+      <p class="hero-sub">Combinamos ingeniería, inteligencia artificial y marketing digital para construir soluciones que realmente impactan tu negocio.</p>
       <div class="hero-ctas">
-        <a href="#contacto" class="btn-primary">
-          Comenzar ahora
-          <span class="btn-icon">↗</span>
-        </a>
+        <a href="#contacto" class="btn-primary">Comenzar ahora <span class="btn-icon">↗</span></a>
         <a href="#trabajos" class="btn-ghost">Ver trabajos →</a>
       </div>
     </div>
-
     <div class="hero-robot">
       <div class="robot-wrapper">
         <div class="robot-aura"></div>
-        <!-- ROBOT SVG -->
         <svg viewBox="0 0 400 480" xmlns="http://www.w3.org/2000/svg" style="width:100%;filter:drop-shadow(0 0 35px rgba(6,182,212,0.28))">
-          <!-- antenna -->
           <line x1="200" y1="28" x2="200" y2="68" stroke="#06B6D4" stroke-width="2.5"/>
-          <circle cx="200" cy="18" r="11" fill="#06B6D4">
-            <animate attributeName="opacity" values="1;0.3;1" dur="2.1s" repeatCount="indefinite"/>
-          </circle>
-          <circle cx="200" cy="18" r="20" fill="none" stroke="#06B6D4" stroke-width="1" opacity="0.4">
-            <animate attributeName="r" values="13;24;13" dur="2.1s" repeatCount="indefinite"/>
-            <animate attributeName="opacity" values="0.5;0;0.5" dur="2.1s" repeatCount="indefinite"/>
-          </circle>
-          <!-- head outer -->
+          <circle cx="200" cy="18" r="11" fill="#06B6D4"><animate attributeName="opacity" values="1;0.3;1" dur="2.1s" repeatCount="indefinite"/></circle>
+          <circle cx="200" cy="18" r="20" fill="none" stroke="#06B6D4" stroke-width="1" opacity="0.4"><animate attributeName="r" values="13;24;13" dur="2.1s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.5;0;0.5" dur="2.1s" repeatCount="indefinite"/></circle>
           <rect x="105" y="68" width="190" height="148" rx="30" fill="#091428" stroke="#1E40AF" stroke-width="1.5"/>
-          <!-- head inner hairline -->
           <rect x="113" y="76" width="174" height="132" rx="24" fill="none" stroke="#06B6D4" stroke-width="0.6" opacity="0.35"/>
-          <!-- eyes bg -->
           <rect x="122" y="104" width="62" height="36" rx="11" fill="#06B6D4" opacity="0.1"/>
           <rect x="216" y="104" width="62" height="36" rx="11" fill="#06B6D4" opacity="0.1"/>
-          <!-- eyes -->
-          <rect x="127" y="109" width="52" height="26" rx="8" fill="#06B6D4" opacity="0.75">
-            <animate attributeName="opacity" values="0.75;1;0.75" dur="3s" repeatCount="indefinite"/>
-          </rect>
-          <rect x="221" y="109" width="52" height="26" rx="8" fill="#06B6D4" opacity="0.75">
-            <animate attributeName="opacity" values="0.75;1;0.75" dur="3s" repeatCount="indefinite" begin="0.5s"/>
-          </rect>
-          <!-- scan lines in eyes -->
-          <rect x="127" y="119" width="20" height="3" rx="1.5" fill="white" opacity="0.8">
-            <animate attributeName="x" values="127;157;127" dur="2s" repeatCount="indefinite"/>
-          </rect>
-          <rect x="221" y="119" width="20" height="3" rx="1.5" fill="white" opacity="0.8">
-            <animate attributeName="x" values="221;251;221" dur="2s" repeatCount="indefinite" begin="0.4s"/>
-          </rect>
-          <!-- mouth bar -->
+          <rect x="127" y="109" width="52" height="26" rx="8" fill="#06B6D4" opacity="0.75"><animate attributeName="opacity" values="0.75;1;0.75" dur="3s" repeatCount="indefinite"/></rect>
+          <rect x="221" y="109" width="52" height="26" rx="8" fill="#06B6D4" opacity="0.75"><animate attributeName="opacity" values="0.75;1;0.75" dur="3s" repeatCount="indefinite" begin="0.5s"/></rect>
+          <rect x="127" y="119" width="20" height="3" rx="1.5" fill="white" opacity="0.8"><animate attributeName="x" values="127;157;127" dur="2s" repeatCount="indefinite"/></rect>
+          <rect x="221" y="119" width="20" height="3" rx="1.5" fill="white" opacity="0.8"><animate attributeName="x" values="221;251;221" dur="2s" repeatCount="indefinite" begin="0.4s"/></rect>
           <rect x="140" y="168" width="120" height="28" rx="9" fill="#1E40AF" opacity="0.45"/>
-          <rect x="145" y="173" width="18" height="18" rx="5" fill="#06B6D4" opacity="0.85">
-            <animate attributeName="width" values="18;90;18" dur="2.6s" repeatCount="indefinite"/>
-          </rect>
-          <!-- neck -->
+          <rect x="145" y="173" width="18" height="18" rx="5" fill="#06B6D4" opacity="0.85"><animate attributeName="width" values="18;90;18" dur="2.6s" repeatCount="indefinite"/></rect>
           <rect x="172" y="216" width="56" height="30" rx="7" fill="#0A1628" stroke="#1E40AF" stroke-width="1"/>
-          <!-- body outer -->
           <rect x="72" y="246" width="256" height="178" rx="32" fill="#091428" stroke="#1E40AF" stroke-width="1.5"/>
-          <!-- body inner hairline -->
           <rect x="80" y="254" width="240" height="162" rx="26" fill="none" stroke="#06B6D4" stroke-width="0.5" opacity="0.28"/>
-          <!-- chest panel -->
           <rect x="112" y="276" width="176" height="88" rx="18" fill="#060D1F" stroke="#1E40AF" stroke-width="1"/>
-          <!-- core ring outer -->
           <circle cx="200" cy="312" r="32" fill="none" stroke="#1E40AF" stroke-width="1" opacity="0.6"/>
-          <!-- core glow -->
           <circle cx="200" cy="312" r="24" fill="#06B6D4" opacity="0.12"/>
-          <!-- core pulse -->
-          <circle cx="200" cy="312" r="16" fill="#06B6D4" opacity="0.45">
-            <animate attributeName="r" values="16;21;16" dur="2s" repeatCount="indefinite"/>
-            <animate attributeName="opacity" values="0.45;0.8;0.45" dur="2s" repeatCount="indefinite"/>
-          </circle>
-          <!-- core center -->
-          <circle cx="200" cy="312" r="8" fill="#06B6D4">
-            <animate attributeName="opacity" values="1;0.55;1" dur="1.5s" repeatCount="indefinite"/>
-          </circle>
-          <!-- LED indicators -->
-          <rect x="120" y="346" width="14" height="9" rx="3" fill="#06B6D4" opacity="0.75"/>
-          <rect x="139" y="346" width="9" height="9" rx="3" fill="#1E40AF" opacity="0.7"/>
-          <rect x="153" y="346" width="16" height="9" rx="3" fill="#06B6D4" opacity="0.5"/>
-          <rect x="244" y="346" width="14" height="9" rx="3" fill="#06B6D4" opacity="0.5"/>
-          <rect x="263" y="346" width="9" height="9" rx="3" fill="#1E40AF" opacity="0.65"/>
-          <!-- circuit traces -->
-          <path d="M92 276 L112 276 L112 312" stroke="#1E40AF" stroke-width="0.8" fill="none" opacity="0.45"/>
-          <circle cx="92" cy="276" r="3" fill="#1E40AF" opacity="0.45"/>
-          <path d="M308 276 L288 276 L288 312" stroke="#1E40AF" stroke-width="0.8" fill="none" opacity="0.45"/>
-          <circle cx="308" cy="276" r="3" fill="#1E40AF" opacity="0.45"/>
-          <!-- left arm -->
-          <rect x="22" y="252" width="50" height="132" rx="20" fill="#091428" stroke="#1E40AF" stroke-width="1.5">
-            <animateTransform attributeName="transform" type="rotate" values="0 47 320;7 47 320;0 47 320" dur="4.5s" repeatCount="indefinite"/>
-          </rect>
-          <circle cx="47" cy="398" r="24" fill="#0A1628" stroke="#06B6D4" stroke-width="1">
-            <animateTransform attributeName="transform" type="rotate" values="0 47 320;7 47 320;0 47 320" dur="4.5s" repeatCount="indefinite"/>
-          </circle>
-          <!-- right arm -->
-          <rect x="328" y="252" width="50" height="132" rx="20" fill="#091428" stroke="#1E40AF" stroke-width="1.5">
-            <animateTransform attributeName="transform" type="rotate" values="0 353 320;-7 353 320;0 353 320" dur="4.5s" repeatCount="indefinite" begin="1.2s"/>
-          </rect>
-          <circle cx="353" cy="398" r="24" fill="#0A1628" stroke="#06B6D4" stroke-width="1">
-            <animateTransform attributeName="transform" type="rotate" values="0 353 320;-7 353 320;0 353 320" dur="4.5s" repeatCount="indefinite" begin="1.2s"/>
-          </circle>
-          <!-- legs -->
-          <rect x="124" y="424" width="58" height="44" rx="15" fill="#091428" stroke="#1E40AF" stroke-width="1.2"/>
-          <rect x="218" y="424" width="58" height="44" rx="15" fill="#091428" stroke="#1E40AF" stroke-width="1.2"/>
-          <!-- feet -->
-          <rect x="112" y="462" width="74" height="14" rx="7" fill="#060D1F" stroke="#06B6D4" stroke-width="0.9"/>
-          <rect x="214" y="462" width="74" height="14" rx="7" fill="#060D1F" stroke="#06B6D4" stroke-width="0.9"/>
-          <!-- orbit ring decoration -->
-          <ellipse cx="200" cy="312" rx="88" ry="22" fill="none" stroke="#1E40AF" stroke-width="0.6" stroke-dasharray="4,6" opacity="0.3">
-            <animateTransform attributeName="transform" type="rotate" from="0 200 312" to="360 200 312" dur="18s" repeatCount="indefinite"/>
-          </ellipse>
-          <!-- small dot on orbit -->
-          <circle cx="288" cy="312" r="4" fill="#06B6D4" opacity="0.7">
-            <animateTransform attributeName="transform" type="rotate" from="0 200 312" to="360 200 312" dur="18s" repeatCount="indefinite"/>
-          </circle>
+          <circle cx="200" cy="312" r="16" fill="#06B6D4" opacity="0.45"><animate attributeName="r" values="16;21;16" dur="2s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.45;0.8;0.45" dur="2s" repeatCount="indefinite"/></circle>
+          <circle cx="200" cy="312" r="8" fill="#06B6D4"><animate attributeName="opacity" values="1;0.55;1" dur="1.5s" repeatCount="indefinite"/></circle>
+          <rect x="120" y="346" width="14" height="9" rx="3" fill="#06B6D4" opacity="0.75"/><rect x="139" y="346" width="9" height="9" rx="3" fill="#1E40AF" opacity="0.7"/><rect x="153" y="346" width="16" height="9" rx="3" fill="#06B6D4" opacity="0.5"/><rect x="244" y="346" width="14" height="9" rx="3" fill="#06B6D4" opacity="0.5"/><rect x="263" y="346" width="9" height="9" rx="3" fill="#1E40AF" opacity="0.65"/>
+          <path d="M92 276 L112 276 L112 312" stroke="#1E40AF" stroke-width="0.8" fill="none" opacity="0.45"/><circle cx="92" cy="276" r="3" fill="#1E40AF" opacity="0.45"/>
+          <path d="M308 276 L288 276 L288 312" stroke="#1E40AF" stroke-width="0.8" fill="none" opacity="0.45"/><circle cx="308" cy="276" r="3" fill="#1E40AF" opacity="0.45"/>
+          <rect x="22" y="252" width="50" height="132" rx="20" fill="#091428" stroke="#1E40AF" stroke-width="1.5"><animateTransform attributeName="transform" type="rotate" values="0 47 320;7 47 320;0 47 320" dur="4.5s" repeatCount="indefinite"/></rect>
+          <circle cx="47" cy="398" r="24" fill="#0A1628" stroke="#06B6D4" stroke-width="1"><animateTransform attributeName="transform" type="rotate" values="0 47 320;7 47 320;0 47 320" dur="4.5s" repeatCount="indefinite"/></circle>
+          <rect x="328" y="252" width="50" height="132" rx="20" fill="#091428" stroke="#1E40AF" stroke-width="1.5"><animateTransform attributeName="transform" type="rotate" values="0 353 320;-7 353 320;0 353 320" dur="4.5s" repeatCount="indefinite" begin="1.2s"/></rect>
+          <circle cx="353" cy="398" r="24" fill="#0A1628" stroke="#06B6D4" stroke-width="1"><animateTransform attributeName="transform" type="rotate" values="0 353 320;-7 353 320;0 353 320" dur="4.5s" repeatCount="indefinite" begin="1.2s"/></circle>
+          <rect x="124" y="424" width="58" height="44" rx="15" fill="#091428" stroke="#1E40AF" stroke-width="1.2"/><rect x="218" y="424" width="58" height="44" rx="15" fill="#091428" stroke="#1E40AF" stroke-width="1.2"/>
+          <rect x="112" y="462" width="74" height="14" rx="7" fill="#060D1F" stroke="#06B6D4" stroke-width="0.9"/><rect x="214" y="462" width="74" height="14" rx="7" fill="#060D1F" stroke="#06B6D4" stroke-width="0.9"/>
+          <ellipse cx="200" cy="312" rx="88" ry="22" fill="none" stroke="#1E40AF" stroke-width="0.6" stroke-dasharray="4,6" opacity="0.3"><animateTransform attributeName="transform" type="rotate" from="0 200 312" to="360 200 312" dur="18s" repeatCount="indefinite"/></ellipse>
+          <circle cx="288" cy="312" r="4" fill="#06B6D4" opacity="0.7"><animateTransform attributeName="transform" type="rotate" from="0 200 312" to="360 200 312" dur="18s" repeatCount="indefinite"/></circle>
         </svg>
       </div>
     </div>
   </div>
-
-  <div class="scroll-hint">
-    <span>Scroll</span>
-    <div class="scroll-line"></div>
-  </div>
+  <div class="scroll-hint"><span>Scroll</span><div class="scroll-line"></div></div>
 </section>
 
 <!-- QUIÉNES SOMOS -->
@@ -800,42 +471,15 @@
       <div class="reveal">
         <div class="eyebrow">Quiénes Somos</div>
         <h2 class="section-title">Tecnología que<br><span class="accent">trabaja por vos</span></h2>
-        <p class="about-desc">
-          En <strong>Solvys</strong> combinamos ingeniería de software, inteligencia artificial y estrategia de marketing para construir soluciones que realmente impactan. No somos una agencia más — somos tu socio tecnológico.
-        </p>
-        <p class="about-desc">
-          Desde automatizaciones que eliminan el trabajo manual hasta campañas digitales potenciadas con datos, cada proyecto que tocamos se convierte en una <strong>ventaja competitiva real</strong>.
-        </p>
-        <a href="#contacto" class="btn-primary" style="display:inline-flex;margin-top:1.25rem;">
-          Trabajemos juntos <span class="btn-icon">↗</span>
-        </a>
+        <p class="about-desc">En <strong>Solvys</strong> combinamos ingeniería de software, inteligencia artificial y estrategia de marketing para construir soluciones que realmente impactan. No somos una agencia más — somos tu socio tecnológico.</p>
+        <p class="about-desc">Desde automatizaciones que eliminan el trabajo manual hasta campañas digitales potenciadas con datos, cada proyecto que tocamos se convierte en una <strong>ventaja competitiva real</strong>.</p>
+        <a href="#contacto" class="btn-primary" style="display:inline-flex;margin-top:1.25rem;">Trabajemos juntos <span class="btn-icon">↗</span></a>
       </div>
-
       <div class="stats-grid reveal d2">
-        <div class="stat-shell reveal d1">
-          <div class="stat-core">
-            <div class="stat-num" data-target="50">0+</div>
-            <div class="stat-lbl">Proyectos completados</div>
-          </div>
-        </div>
-        <div class="stat-shell reveal d2">
-          <div class="stat-core">
-            <div class="stat-num" data-target="30">0+</div>
-            <div class="stat-lbl">Clientes activos</div>
-          </div>
-        </div>
-        <div class="stat-shell reveal d3">
-          <div class="stat-core">
-            <div class="stat-num" data-target="98">0%</div>
-            <div class="stat-lbl">Satisfacción del cliente</div>
-          </div>
-        </div>
-        <div class="stat-shell reveal d4">
-          <div class="stat-core">
-            <div class="stat-num" data-target="5">0+</div>
-            <div class="stat-lbl">Años de experiencia</div>
-          </div>
-        </div>
+        <div class="stat-shell reveal d1"><div class="stat-core"><div class="stat-num" data-target="50">0+</div><div class="stat-lbl">Proyectos completados</div></div></div>
+        <div class="stat-shell reveal d2"><div class="stat-core"><div class="stat-num" data-target="30">0+</div><div class="stat-lbl">Clientes activos</div></div></div>
+        <div class="stat-shell reveal d3"><div class="stat-core"><div class="stat-num" data-target="98">0%</div><div class="stat-lbl">Satisfacción del cliente</div></div></div>
+        <div class="stat-shell reveal d4"><div class="stat-core"><div class="stat-num" data-target="5">0+</div><div class="stat-lbl">Años de experiencia</div></div></div>
       </div>
     </div>
   </div>
@@ -849,113 +493,32 @@
       <h2 class="section-title">Todo lo que tu empresa<br><span class="accent">necesita</span></h2>
       <p class="muted" style="font-size:1rem;line-height:1.75;margin-top:0.75rem;">Soluciones integrales que se adaptan al ritmo de tu negocio.</p>
     </div>
-
     <div class="services-grid">
-
-      <!-- 01 — IT Solutions wide card -->
       <div class="scard scard--wide reveal">
         <div>
           <div class="scard-rule"></div>
           <h3 class="scard-title">Soluciones IT a Medida</h3>
           <p class="scard-desc">Diseñamos, desarrollamos y mantenemos sistemas, aplicaciones web y plataformas digitales adaptadas a tus procesos. Infraestructura escalable, código limpio, resultados medibles.</p>
-          <div class="scard-tags">
-            <span class="pill">Web Apps</span>
-            <span class="pill">APIs REST</span>
-            <span class="pill">Cloud</span>
-            <span class="pill">Microservicios</span>
-            <span class="pill">DevOps</span>
-          </div>
+          <div class="scard-tags"><span class="pill">Web Apps</span><span class="pill">APIs REST</span><span class="pill">Cloud</span><span class="pill">Microservicios</span><span class="pill">DevOps</span></div>
         </div>
         <div class="scard-visual">
           <svg viewBox="0 0 200 200" style="width:180px;height:180px;opacity:0.75">
-            <circle cx="100" cy="100" r="9" fill="#06B6D4">
-              <animate attributeName="r" values="9;13;9" dur="2.2s" repeatCount="indefinite"/>
-            </circle>
-            <circle cx="38" cy="55" r="5.5" fill="#1E40AF"/>
-            <circle cx="162" cy="55" r="5.5" fill="#1E40AF"/>
-            <circle cx="38" cy="145" r="5.5" fill="#1E40AF"/>
-            <circle cx="162" cy="145" r="5.5" fill="#1E40AF"/>
-            <circle cx="100" cy="25" r="4.5" fill="#06B6D4" opacity="0.7"/>
-            <circle cx="100" cy="175" r="4.5" fill="#06B6D4" opacity="0.7"/>
-            <line x1="100" y1="100" x2="38" y2="55" stroke="#1E40AF" stroke-width="1" opacity="0.5">
-              <animate attributeName="opacity" values="0.5;1;0.5" dur="1.9s" repeatCount="indefinite"/>
-            </line>
-            <line x1="100" y1="100" x2="162" y2="55" stroke="#1E40AF" stroke-width="1" opacity="0.5">
-              <animate attributeName="opacity" values="0.5;1;0.5" dur="1.9s" repeatCount="indefinite" begin="0.4s"/>
-            </line>
-            <line x1="100" y1="100" x2="38" y2="145" stroke="#06B6D4" stroke-width="1" opacity="0.4">
-              <animate attributeName="opacity" values="0.4;0.9;0.4" dur="2.4s" repeatCount="indefinite" begin="0.7s"/>
-            </line>
-            <line x1="100" y1="100" x2="162" y2="145" stroke="#06B6D4" stroke-width="1" opacity="0.4">
-              <animate attributeName="opacity" values="0.4;0.9;0.4" dur="2.4s" repeatCount="indefinite" begin="1s"/>
-            </line>
-            <line x1="100" y1="100" x2="100" y2="25" stroke="#06B6D4" stroke-width="1.5" opacity="0.55"/>
-            <line x1="100" y1="100" x2="100" y2="175" stroke="#06B6D4" stroke-width="1.5" opacity="0.55"/>
-            <circle cx="100" cy="100" r="52" fill="none" stroke="#1E40AF" stroke-width="0.5" stroke-dasharray="3,5" opacity="0.4">
-              <animateTransform attributeName="transform" type="rotate" from="0 100 100" to="360 100 100" dur="22s" repeatCount="indefinite"/>
-            </circle>
-            <circle cx="100" cy="100" r="72" fill="none" stroke="#06B6D4" stroke-width="0.5" stroke-dasharray="1,8" opacity="0.2">
-              <animateTransform attributeName="transform" type="rotate" from="360 100 100" to="0 100 100" dur="35s" repeatCount="indefinite"/>
-            </circle>
+            <circle cx="100" cy="100" r="9" fill="#06B6D4"><animate attributeName="r" values="9;13;9" dur="2.2s" repeatCount="indefinite"/></circle>
+            <circle cx="38" cy="55" r="5.5" fill="#1E40AF"/><circle cx="162" cy="55" r="5.5" fill="#1E40AF"/><circle cx="38" cy="145" r="5.5" fill="#1E40AF"/><circle cx="162" cy="145" r="5.5" fill="#1E40AF"/><circle cx="100" cy="25" r="4.5" fill="#06B6D4" opacity="0.7"/><circle cx="100" cy="175" r="4.5" fill="#06B6D4" opacity="0.7"/>
+            <line x1="100" y1="100" x2="38" y2="55" stroke="#1E40AF" stroke-width="1" opacity="0.5"><animate attributeName="opacity" values="0.5;1;0.5" dur="1.9s" repeatCount="indefinite"/></line>
+            <line x1="100" y1="100" x2="162" y2="55" stroke="#1E40AF" stroke-width="1" opacity="0.5"><animate attributeName="opacity" values="0.5;1;0.5" dur="1.9s" repeatCount="indefinite" begin="0.4s"/></line>
+            <line x1="100" y1="100" x2="38" y2="145" stroke="#06B6D4" stroke-width="1" opacity="0.4"><animate attributeName="opacity" values="0.4;0.9;0.4" dur="2.4s" repeatCount="indefinite" begin="0.7s"/></line>
+            <line x1="100" y1="100" x2="162" y2="145" stroke="#06B6D4" stroke-width="1" opacity="0.4"><animate attributeName="opacity" values="0.4;0.9;0.4" dur="2.4s" repeatCount="indefinite" begin="1s"/></line>
+            <line x1="100" y1="100" x2="100" y2="25" stroke="#06B6D4" stroke-width="1.5" opacity="0.55"/><line x1="100" y1="100" x2="100" y2="175" stroke="#06B6D4" stroke-width="1.5" opacity="0.55"/>
+            <circle cx="100" cy="100" r="52" fill="none" stroke="#1E40AF" stroke-width="0.5" stroke-dasharray="3,5" opacity="0.4"><animateTransform attributeName="transform" type="rotate" from="0 100 100" to="360 100 100" dur="22s" repeatCount="indefinite"/></circle>
           </svg>
         </div>
       </div>
-
-      <!-- 02 — Marketing Digital -->
-      <div class="scard reveal d1">
-        <div class="scard-num">02</div>
-        <div class="scard-rule"></div>
-        <h3 class="scard-title">Marketing Digital</h3>
-        <p class="scard-desc">Estrategias data-driven que generan leads reales. SEO, paid media, social y content integrados para maximizar tu ROI.</p>
-        <div class="scard-tags">
-          <span class="pill">SEO</span><span class="pill">SEM</span><span class="pill">Social Ads</span><span class="pill">Email MKT</span>
-        </div>
-      </div>
-
-      <!-- 03 — Automatización -->
-      <div class="scard reveal d2">
-        <div class="scard-num">03</div>
-        <div class="scard-rule"></div>
-        <h3 class="scard-title">Automatización</h3>
-        <p class="scard-desc">Eliminamos tareas repetitivas con flujos inteligentes. Integramos tus herramientas y ponemos el trabajo en piloto automático.</p>
-        <div class="scard-tags">
-          <span class="pill">Make</span><span class="pill">n8n</span><span class="pill">Zapier</span><span class="pill">Webhooks</span>
-        </div>
-      </div>
-
-      <!-- 04 — IA -->
-      <div class="scard reveal d1">
-        <div class="scard-num">04</div>
-        <div class="scard-rule"></div>
-        <h3 class="scard-title">Inteligencia Artificial</h3>
-        <p class="scard-desc">Chatbots, modelos predictivos, RAG y agentes con IA. Soluciones personalizadas para tu flujo de trabajo.</p>
-        <div class="scard-tags">
-          <span class="pill">LLMs</span><span class="pill">RAG</span><span class="pill">Agentes IA</span>
-        </div>
-      </div>
-
-      <!-- 05 — Desarrollo Web -->
-      <div class="scard reveal d2">
-        <div class="scard-num">05</div>
-        <div class="scard-rule"></div>
-        <h3 class="scard-title">Desarrollo Web</h3>
-        <p class="scard-desc">Landings, e-commerce, portales y sistemas web con diseño premium, velocidad extrema y alta conversión.</p>
-        <div class="scard-tags">
-          <span class="pill">React</span><span class="pill">Next.js</span><span class="pill">CMS</span><span class="pill">E-commerce</span>
-        </div>
-      </div>
-
-      <!-- 06 — Consultoría -->
-      <div class="scard reveal d3">
-        <div class="scard-num">06</div>
-        <div class="scard-rule"></div>
-        <h3 class="scard-title">Consultoría Estratégica</h3>
-        <p class="scard-desc">Analizamos tu negocio y diseñamos una hoja de ruta tecnológica para escalar con eficiencia y sin fricciones.</p>
-        <div class="scard-tags">
-          <span class="pill">Diagnóstico</span><span class="pill">Roadmap</span><span class="pill">KPIs</span>
-        </div>
-      </div>
-
+      <div class="scard reveal d1"><div class="scard-num">02</div><div class="scard-rule"></div><h3 class="scard-title">Marketing Digital</h3><p class="scard-desc">Estrategias data-driven que generan leads reales. SEO, paid media, social y content integrados para maximizar tu ROI.</p><div class="scard-tags"><span class="pill">SEO</span><span class="pill">SEM</span><span class="pill">Social Ads</span><span class="pill">Email MKT</span></div></div>
+      <div class="scard reveal d2"><div class="scard-num">03</div><div class="scard-rule"></div><h3 class="scard-title">Automatización</h3><p class="scard-desc">Eliminamos tareas repetitivas con flujos inteligentes. Integramos tus herramientas y ponemos el trabajo en piloto automático.</p><div class="scard-tags"><span class="pill">Make</span><span class="pill">n8n</span><span class="pill">Zapier</span><span class="pill">Webhooks</span></div></div>
+      <div class="scard reveal d1"><div class="scard-num">04</div><div class="scard-rule"></div><h3 class="scard-title">Inteligencia Artificial</h3><p class="scard-desc">Chatbots, modelos predictivos, RAG y agentes con IA. Soluciones personalizadas para tu flujo de trabajo.</p><div class="scard-tags"><span class="pill">LLMs</span><span class="pill">RAG</span><span class="pill">Agentes IA</span></div></div>
+      <div class="scard reveal d2"><div class="scard-num">05</div><div class="scard-rule"></div><h3 class="scard-title">Desarrollo Web</h3><p class="scard-desc">Landings, e-commerce, portales y sistemas web con diseño premium, velocidad extrema y alta conversión.</p><div class="scard-tags"><span class="pill">React</span><span class="pill">Next.js</span><span class="pill">CMS</span><span class="pill">E-commerce</span></div></div>
+      <div class="scard reveal d3"><div class="scard-num">06</div><div class="scard-rule"></div><h3 class="scard-title">Consultoría Estratégica</h3><p class="scard-desc">Analizamos tu negocio y diseñamos una hoja de ruta tecnológica para escalar con eficiencia y sin fricciones.</p><div class="scard-tags"><span class="pill">Diagnóstico</span><span class="pill">Roadmap</span><span class="pill">KPIs</span></div></div>
     </div>
   </div>
 </section>
@@ -965,143 +528,18 @@
   <div class="portfolio-inner">
     <div class="portfolio-header reveal">
       <div class="eyebrow">Nuestros Trabajos</div>
-      <h2 class="section-title">Proyectos que<br><span class="accent">hablan por sí solos</span></h2>
+      <h2 class="section-title">Soluciones que<br><span class="accent">entregamos</span></h2>
+      <p class="muted" style="font-size:1rem;line-height:1.75;margin-top:0.75rem;">Cada módulo es funcional, escalable y listo para integrarse a tu operación.</p>
     </div>
-
-    <div class="portfolio-grid" style="grid-template-columns:repeat(3,1fr);gap:1.1rem;">
-
-      <!-- Logos / Identidad Visual -->
-      <div class="pcard reveal d1" style="aspect-ratio:3/4;">
-        <div class="pcard-bg" style="background:linear-gradient(135deg,#1E40AF,#06B6D4)"></div>
-        <div class="pcard-art">
-          <svg viewBox="0 0 140 100" width="130" height="93" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="55" cy="50" r="36" stroke="#06B6D4" stroke-width="1.2"/>
-            <circle cx="85" cy="50" r="36" stroke="#1E40AF" stroke-width="1.2"/>
-            <path d="M70 16 Q95 50 70 84 Q45 50 70 16" fill="rgba(6,182,212,0.1)"/>
-            <circle cx="55" cy="50" r="36" fill="rgba(30,64,175,0.06)"/>
-            <circle cx="85" cy="50" r="36" fill="rgba(6,182,212,0.06)"/>
-          </svg>
-        </div>
-        <div class="pcard-overlay">
-          <span class="pcard-cat">Identidad Visual</span>
-          <h3 class="pcard-title">Diseño de Logos</h3>
-          <p class="pcard-desc">Identidades únicas que comunican el ADN de la marca. Desde concepto hasta entrega en todos los formatos.</p>
-        </div>
-      </div>
-
-      <!-- Branding -->
-      <div class="pcard reveal d2" style="aspect-ratio:3/4;">
-        <div class="pcard-bg" style="background:linear-gradient(135deg,#06B6D4,#0D1F5C)"></div>
-        <div class="pcard-art">
-          <svg viewBox="0 0 120 80" width="110" height="73" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="5" y="5" width="110" height="70" rx="2" stroke="rgba(6,182,212,0.4)" stroke-width="1"/>
-            <line x1="5" y1="28" x2="115" y2="28" stroke="#06B6D4" stroke-width="1.5"/>
-            <rect x="18" y="36" width="36" height="5" rx="2.5" fill="#1E40AF" opacity="0.6"/>
-            <rect x="18" y="46" width="58" height="4" rx="2" fill="rgba(122,144,184,0.3)"/>
-            <rect x="18" y="55" width="44" height="4" rx="2" fill="rgba(122,144,184,0.2)"/>
-            <circle cx="95" cy="52" r="12" stroke="#06B6D4" stroke-width="1" opacity="0.5"/>
-            <circle cx="95" cy="52" r="7" fill="rgba(6,182,212,0.15)"/>
-          </svg>
-        </div>
-        <div class="pcard-overlay">
-          <span class="pcard-cat">Brand Strategy</span>
-          <h3 class="pcard-title">Branding Integral</h3>
-          <p class="pcard-desc">Manual de marca, paleta de colores, tipografía y aplicaciones. Coherencia visual en todos los puntos de contacto.</p>
-        </div>
-      </div>
-
-      <!-- Marketing Digital -->
-      <div class="pcard reveal d3" style="aspect-ratio:3/4;">
-        <div class="pcard-bg" style="background:linear-gradient(135deg,#0D1F5C,#1E40AF)"></div>
-        <div class="pcard-art">
-          <svg viewBox="0 0 140 80" width="130" height="74" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <polyline points="10,65 38,46 65,52 95,26 130,10" stroke="#06B6D4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            <polyline points="10,65 38,46 65,52 95,26 130,10 130,65 10,65" fill="rgba(6,182,212,0.05)"/>
-            <circle cx="10" cy="65" r="3" fill="#06B6D4"/>
-            <circle cx="38" cy="46" r="3" fill="#06B6D4" opacity="0.7"/>
-            <circle cx="65" cy="52" r="3" fill="#06B6D4" opacity="0.7"/>
-            <circle cx="95" cy="26" r="3" fill="#06B6D4" opacity="0.85"/>
-            <circle cx="130" cy="10" r="4.5" fill="#06B6D4"/>
-            <line x1="10" y1="68" x2="130" y2="68" stroke="rgba(122,144,184,0.2)" stroke-width="1"/>
-          </svg>
-        </div>
-        <div class="pcard-overlay">
-          <span class="pcard-cat">Estrategia Digital</span>
-          <h3 class="pcard-title">Marketing Digital</h3>
-          <p class="pcard-desc">Full-funnel en Meta + Google. Segmentación precisa, creatividades que convierten y ROI medible desde el día 1.</p>
-        </div>
-      </div>
-
-      <!-- Ventas & Cold Calling -->
-      <div class="pcard reveal d1" style="aspect-ratio:3/4;">
-        <div class="pcard-bg" style="background:linear-gradient(135deg,#06B6D4,#1E40AF)"></div>
-        <div class="pcard-art">
-          <svg viewBox="0 0 120 90" width="110" height="82" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M15 12 L105 12 L78 46 L78 82 L42 82 L42 46 Z" fill="rgba(6,182,212,0.08)" stroke="#06B6D4" stroke-width="1.2" stroke-linejoin="round"/>
-            <line x1="15" y1="12" x2="105" y2="12" stroke="#1E40AF" stroke-width="2" stroke-linecap="round"/>
-            <line x1="42" y1="46" x2="78" y2="46" stroke="rgba(6,182,212,0.45)" stroke-width="1"/>
-            <line x1="50" y1="64" x2="70" y2="64" stroke="rgba(6,182,212,0.3)" stroke-width="1"/>
-          </svg>
-        </div>
-        <div class="pcard-overlay">
-          <span class="pcard-cat">Sales · Prospecting</span>
-          <h3 class="pcard-title">Ventas & Cold Calling</h3>
-          <p class="pcard-desc">Scripts optimizados, bases segmentadas y seguimiento automatizado para maximizar la tasa de cierre.</p>
-        </div>
-      </div>
-
-      <!-- CRM Marketing -->
-      <div class="pcard reveal d2" style="aspect-ratio:3/4;">
-        <div class="pcard-bg" style="background:linear-gradient(135deg,#1E40AF,#0D1F5C)"></div>
-        <div class="pcard-art">
-          <svg viewBox="0 0 140 80" width="130" height="74" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="70" cy="40" r="9" fill="rgba(6,182,212,0.2)" stroke="#06B6D4" stroke-width="1.2"/>
-            <circle cx="22" cy="18" r="5.5" fill="rgba(30,64,175,0.3)" stroke="#1E40AF" stroke-width="1"/>
-            <circle cx="118" cy="18" r="5.5" fill="rgba(30,64,175,0.3)" stroke="#1E40AF" stroke-width="1"/>
-            <circle cx="22" cy="62" r="5.5" fill="rgba(30,64,175,0.3)" stroke="#1E40AF" stroke-width="1"/>
-            <circle cx="118" cy="62" r="5.5" fill="rgba(30,64,175,0.3)" stroke="#1E40AF" stroke-width="1"/>
-            <circle cx="70" cy="8" r="4" fill="rgba(6,182,212,0.25)" stroke="#06B6D4" stroke-width="0.8"/>
-            <circle cx="70" cy="72" r="4" fill="rgba(6,182,212,0.25)" stroke="#06B6D4" stroke-width="0.8"/>
-            <line x1="70" y1="40" x2="22" y2="18" stroke="rgba(6,182,212,0.35)" stroke-width="1"/>
-            <line x1="70" y1="40" x2="118" y2="18" stroke="rgba(6,182,212,0.35)" stroke-width="1"/>
-            <line x1="70" y1="40" x2="22" y2="62" stroke="rgba(6,182,212,0.35)" stroke-width="1"/>
-            <line x1="70" y1="40" x2="118" y2="62" stroke="rgba(6,182,212,0.35)" stroke-width="1"/>
-            <line x1="70" y1="40" x2="70" y2="8" stroke="rgba(6,182,212,0.25)" stroke-width="0.8"/>
-            <line x1="70" y1="40" x2="70" y2="72" stroke="rgba(6,182,212,0.25)" stroke-width="0.8"/>
-          </svg>
-        </div>
-        <div class="pcard-overlay">
-          <span class="pcard-cat">CRM · Automatización</span>
-          <h3 class="pcard-title">CRM Marketing</h3>
-          <p class="pcard-desc">Implementación de CRM con flujos de nurturing automatizados y segmentación dinámica de clientes.</p>
-        </div>
-      </div>
-
-      <!-- Diseño Gráfico -->
-      <div class="pcard reveal d3" style="aspect-ratio:3/4;">
-        <div class="pcard-bg" style="background:linear-gradient(135deg,#0D1F5C,#06B6D4)"></div>
-        <div class="pcard-art">
-          <svg viewBox="0 0 120 80" width="110" height="73" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="0" y="0" width="40" height="80" fill="rgba(30,64,175,0.4)"/>
-            <rect x="44" y="0" width="34" height="80" fill="rgba(6,182,212,0.28)"/>
-            <rect x="82" y="0" width="38" height="80" fill="rgba(240,246,255,0.07)"/>
-            <rect x="0" y="0" width="120" height="80" stroke="rgba(6,182,212,0.3)" stroke-width="1"/>
-            <line x1="40" y1="0" x2="40" y2="80" stroke="rgba(6,182,212,0.2)" stroke-width="0.5"/>
-            <line x1="78" y1="0" x2="78" y2="80" stroke="rgba(6,182,212,0.2)" stroke-width="0.5"/>
-            <circle cx="20" cy="40" r="8" fill="rgba(6,182,212,0.3)" stroke="#06B6D4" stroke-width="0.8"/>
-          </svg>
-        </div>
-        <div class="pcard-overlay">
-          <span class="pcard-cat">Diseño Gráfico</span>
-          <h3 class="pcard-title">Publicidad & Redes</h3>
-          <p class="pcard-desc">Piezas para feed, stories, banners y campañas. Diseño que detiene el scroll y comunica en segundos.</p>
-        </div>
-      </div>
-
+    <div class="sol-filters reveal d1" id="solFilters">
+      <button class="sol-filter active" data-filter="all">Todos</button>
+      <button class="sol-filter" data-filter="it">IT & Desarrollo</button>
+      <button class="sol-filter" data-filter="wix">Web & Wix</button>
+      <button class="sol-filter" data-filter="mkt">Marketing</button>
     </div>
+    <div class="sol-grid reveal d2" id="solGrid"></div>
   </div>
 </section>
-
 
 <!-- PLANNER -->
 <section class="planner" id="planner">
@@ -1110,52 +548,20 @@
       <div class="eyebrow">Agenda una reunión</div>
       <h2 class="section-title">Hablemos de<br><span class="accent">tu proyecto</span></h2>
     </div>
-
     <div class="planner-grid">
       <div class="reveal">
-        <p class="planner-desc">
-          Agendá una reunión de 30 minutos con nuestro equipo. Sin compromiso. Analizamos tu situación y te contamos cómo podemos ayudarte.
-        </p>
-
+        <p class="planner-desc">Agendá una reunión de 30 minutos con nuestro equipo. Sin compromiso. Analizamos tu situación y te contamos cómo podemos ayudarte.</p>
         <div class="planner-steps">
-          <div class="planner-step">
-            <div class="step-num">01</div>
-            <div class="step-text">
-              <strong>Elegí día y horario</strong>
-              <span>Seleccioná el momento que mejor te venga en el calendario.</span>
-            </div>
-          </div>
-          <div class="planner-step">
-            <div class="step-num">02</div>
-            <div class="step-text">
-              <strong>Confirmación automática</strong>
-              <span>Recibís un email con el link de videollamada. Nuestro equipo también queda notificado.</span>
-            </div>
-          </div>
-          <div class="planner-step">
-            <div class="step-num">03</div>
-            <div class="step-text">
-              <strong>Reunión de diagnóstico</strong>
-              <span>30 min donde entendemos tu negocio y te proponemos el mejor camino.</span>
-            </div>
-          </div>
+          <div class="planner-step"><div class="step-num">01</div><div class="step-text"><strong>Elegí día y horario</strong><span>Seleccioná el momento que mejor te venga en el calendario.</span></div></div>
+          <div class="planner-step"><div class="step-num">02</div><div class="step-text"><strong>Confirmación automática</strong><span>Recibís un email con el link de videollamada. Nuestro equipo también queda notificado.</span></div></div>
+          <div class="planner-step"><div class="step-num">03</div><div class="step-text"><strong>Reunión de diagnóstico</strong><span>30 min donde entendemos tu negocio y te proponemos el mejor camino.</span></div></div>
         </div>
-
-        <a href="#contacto" class="btn-ghost" style="display:inline-flex;margin-top:2rem;">
-          O envianos un mensaje →
-        </a>
+        <a href="#contacto" class="btn-ghost" style="display:inline-flex;margin-top:2rem;">O envianos un mensaje →</a>
       </div>
-
       <div class="reveal d2">
-        <div class="calendly-shell">
-          <div class="calendly-core">
-            <div
-              class="calendly-inline-widget"
-              data-url="https://calendly.com/solvys/reunion?background_color=0c1620&text_color=f0f6ff&primary_color=06b6d4&hide_gdpr_banner=1"
-              style="min-width:280px;height:680px;">
-            </div>
-          </div>
-        </div>
+        <div class="calendly-shell"><div class="calendly-core">
+          <div class="calendly-inline-widget" data-url="https://calendly.com/solvys/reunion?background_color=0c1620&text_color=f0f6ff&primary_color=06b6d4&hide_gdpr_banner=1" style="min-width:280px;height:680px;"></div>
+        </div></div>
       </div>
     </div>
   </div>
@@ -1169,51 +575,21 @@
       <div class="reveal">
         <div class="eyebrow">Contacto</div>
         <h2 class="contact-title">¿Listo para<br><span class="accent">despegar?</span></h2>
-        <p class="contact-desc">
-          Contanos tu proyecto y en menos de 24hs te respondemos con una propuesta concreta. Sin compromiso.
-        </p>
-
+        <p class="contact-desc">Contanos tu proyecto y en menos de 24hs te respondemos con una propuesta concreta. Sin compromiso.</p>
         <div class="cdetail">
-          <div class="cdetail-icon">
-            <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-              <rect x="2" y="4" width="16" height="12" rx="2"/>
-              <polyline points="2,4 10,11 18,4"/>
-            </svg>
-          </div>
-          <div class="cdetail-text">
-            <strong>Email</strong>tomasgeneroso90@gmail.com
-          </div>
+          <div class="cdetail-icon"><svg viewBox="0 0 20 20"><rect x="2" y="4" width="16" height="12" rx="2"/><polyline points="2,4 10,11 18,4"/></svg></div>
+          <div class="cdetail-text"><strong>Email</strong>tomasgeneroso90@gmail.com</div>
         </div>
-
         <div class="cdetail">
-          <div class="cdetail-icon">
-            <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-              <path d="M4 4h12a2 2 0 012 2v7a2 2 0 01-2 2H7l-4 3V6a2 2 0 012-2z"/>
-            </svg>
-          </div>
-          <div class="cdetail-text">
-            <strong>WhatsApp</strong>Respuesta garantizada en el día
-          </div>
+          <div class="cdetail-icon"><svg viewBox="0 0 20 20"><path d="M4 4h12a2 2 0 012 2v7a2 2 0 01-2 2H7l-4 3V6a2 2 0 012-2z"/></svg></div>
+          <div class="cdetail-text"><strong>WhatsApp</strong>Respuesta garantizada en el día</div>
         </div>
-
-        <a href="https://wa.me/+5492923503895?text=Hola%20Solvys%2C%20me%20gustar%C3%ADa%20consultarles%20sobre%20sus%20servicios" target="_blank" rel="noopener" class="btn-primary" style="display:inline-flex;margin-top:1.5rem;background:#25D366;color:white;box-shadow:0 8px 30px rgba(37,211,102,0.3);">
-          Escribinos por WhatsApp
-          <span class="btn-icon" style="background:rgba(255,255,255,0.2);">&#8599;</span>
-        </a>
-
+        <a href="https://wa.me/+5492923503895?text=Hola%20Solvys%2C%20me%20gustar%C3%ADa%20consultarles%20sobre%20sus%20servicios" target="_blank" rel="noopener" class="btn-primary" style="display:inline-flex;margin-top:1.5rem;background:#25D366;color:white;box-shadow:0 8px 30px rgba(37,211,102,0.3);">Escribinos por WhatsApp <span class="btn-icon" style="background:rgba(255,255,255,0.2);">&#8599;</span></a>
         <div class="cdetail" style="margin-top:1.5rem;">
-          <div class="cdetail-icon">
-            <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="10" cy="10" r="7"/>
-              <polyline points="10,6 10,10 13,12"/>
-            </svg>
-          </div>
-          <div class="cdetail-text">
-            <strong>Horario</strong>Lunes a Viernes · 9hs a 18hs (AR)
-          </div>
+          <div class="cdetail-icon"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="7"/><polyline points="10,6 10,10 13,12"/></svg></div>
+          <div class="cdetail-text"><strong>Horario</strong>Lunes a Viernes · 9hs a 18hs (AR)</div>
         </div>
       </div>
-
       <div class="reveal d2">
         <div class="form-shell">
           <form class="form-core" id="contactForm" action="https://formsubmit.co/tomasgeneroso90@gmail.com" method="POST">
@@ -1222,31 +598,13 @@
             <input type="hidden" name="_template" value="table">
             <input type="hidden" name="_next" value="https://solvys.site/gracias">
             <input type="hidden" name="_cc" value="aioalmeira@gmail.com">
-
             <div class="frow">
-              <div class="fgroup">
-                <label class="flabel">Nombre</label>
-                <input type="text" name="nombre" class="finput" placeholder="Tu nombre" required>
-              </div>
-              <div class="fgroup">
-                <label class="flabel">Email</label>
-                <input type="email" name="email" class="finput" placeholder="tu@email.com" required>
-              </div>
+              <div class="fgroup"><label class="flabel">Nombre</label><input type="text" name="nombre" class="finput" placeholder="Tu nombre" required></div>
+              <div class="fgroup"><label class="flabel">Email</label><input type="email" name="email" class="finput" placeholder="tu@email.com" required></div>
             </div>
-
-            <div class="fgroup">
-              <label class="flabel">Empresa (opcional)</label>
-              <input type="text" name="empresa" class="finput" placeholder="Nombre de tu empresa">
-            </div>
-
-            <div class="fgroup">
-              <label class="flabel">¿Qué necesitás?</label>
-              <textarea name="mensaje" class="finput" placeholder="Contanos brevemente tu proyecto o desafío..." required></textarea>
-            </div>
-
-            <button type="submit" class="submit-btn">
-              Enviar mensaje ↗
-            </button>
+            <div class="fgroup"><label class="flabel">Empresa (opcional)</label><input type="text" name="empresa" class="finput" placeholder="Nombre de tu empresa"></div>
+            <div class="fgroup"><label class="flabel">¿Qué necesitás?</label><textarea name="mensaje" class="finput" placeholder="Contanos brevemente tu proyecto o desafío..." required></textarea></div>
+            <button type="submit" class="submit-btn">Enviar mensaje ↗</button>
           </form>
         </div>
       </div>
@@ -1258,23 +616,223 @@
 <footer class="footer">
   <div class="footer-inner">
     <div>
-      <a href="#" class="footer-logo">
-        <div class="logo-box">S</div>
-        SOLVYS
-      </a>
+      <a href="#" class="footer-logo"><div class="logo-box">S</div>SOLVYS</a>
       <p class="footer-tagline">Soluciones IT & Marketing con IA</p>
     </div>
     <div class="footer-links">
-      <a href="#nosotros">Nosotros</a>
-      <a href="#servicios">Servicios</a>
-      <a href="#trabajos">Trabajos</a>
-      <a href="#contacto">Contacto</a>
+      <a href="#nosotros">Nosotros</a><a href="#servicios">Servicios</a>
+      <a href="#trabajos">Trabajos</a><a href="#contacto">Contacto</a>
     </div>
     <p class="footer-copy">&copy; 2025 Solvys · Todos los derechos reservados.</p>
   </div>
 </footer>
 
 <script>
+// ── SOLUTIONS DATA ──
+const solutions = [
+  // IT & Desarrollo
+  {
+    id:'landing', type:'it', cat:'Web · Diseño',
+    title:'Landing Page',
+    desc:'Diseño responsive con animaciones, SEO básico y alta conversión. Ideal para presentar tu producto o servicio.',
+    long:'Una landing page profesional que convierte visitantes en clientes. Diseño a medida, animaciones fluidas, formulario de contacto y optimización para buscadores.',
+    features:['Diseño responsive', 'Animaciones CSS/JS', 'SEO on-page', 'Formulario de contacto', 'Integración WhatsApp', 'Google Analytics'],
+    stack:['HTML/CSS', 'JavaScript', 'Next.js', 'Wix']
+  },
+  {
+    id:'sitio-web', type:'wix', cat:'Web Corporativa',
+    title:'Sitio Web Corporativo',
+    desc:'Presencia digital completa: hasta 10 páginas, blog, SEO técnico y analytics configurado.',
+    long:'Sitio web profesional multipágina con identidad de marca coherente, blog corporativo y optimización técnica completa para buscadores.',
+    features:['Hasta 10 páginas', 'Blog corporativo', 'SEO técnico completo', 'Analytics integrado', 'Multiidioma opcional', 'Mantenimiento mensual'],
+    stack:['Wix', 'Next.js', 'CMS', 'Google Search Console']
+  },
+  {
+    id:'ecommerce', type:'wix', cat:'E-commerce',
+    title:'Tienda Online',
+    desc:'Catálogo, carrito, checkout y pasarela de pago. Hasta 50 productos con gestión completa.',
+    long:'E-commerce completo con gestión de productos, carrito optimizado, pasarela de pago integrada y panel de administración para manejar pedidos.',
+    features:['Catálogo de productos', 'Carrito de compras', 'Checkout optimizado', 'Pasarela de pago', 'Gestión de stock', 'Panel de pedidos'],
+    stack:['Wix', 'Stripe', 'MercadoPago', 'Next.js']
+  },
+  {
+    id:'ecommerce-full', type:'it', cat:'E-commerce · Facturación',
+    title:'E-commerce con Facturación',
+    desc:'Tienda completa con emisión automática de comprobantes y facturas electrónicas integradas.',
+    long:'Solución e-commerce avanzada que incluye la emisión automática de comprobantes fiscales y facturas electrónicas según la regulación vigente.',
+    features:['Todo el e-commerce básico', 'Facturación electrónica', 'Comprobantes automáticos', 'Historial de compras', 'Reportes fiscales', 'Integración contable'],
+    stack:['Next.js', 'Stripe', 'MercadoPago', 'Node.js', 'PostgreSQL']
+  },
+  {
+    id:'api', type:'it', cat:'Backend · API',
+    title:'API Backend Personalizada',
+    desc:'REST o GraphQL con autenticación, base de datos y documentación Swagger completa.',
+    long:'Backend robusto y escalable con arquitectura limpia, endpoints documentados, autenticación segura y base de datos optimizada para tu caso de uso.',
+    features:['REST / GraphQL', 'Autenticación JWT/OAuth', 'Base de datos relacional', 'Documentación Swagger', 'Tests automatizados', 'Deploy en cloud'],
+    stack:['Node.js', 'Python', 'PostgreSQL', 'AWS', 'Docker']
+  },
+  {
+    id:'cms', type:'it', cat:'Gestión de Contenidos',
+    title:'CMS a Medida',
+    desc:'Panel de administración con CRUD completo, permisos por rol y gestión de medios.',
+    long:'Sistema de gestión de contenidos desarrollado a medida para tu flujo editorial. Panel intuitivo, permisos granulares y flujos de aprobación configurables.',
+    features:['Panel admin personalizado', 'CRUD completo', 'Permisos por rol', 'Gestión de medios', 'Publicación programada', 'SEO integrado'],
+    stack:['Next.js', 'Sanity', 'Strapi', 'PostgreSQL', 'Cloudinary']
+  },
+  {
+    id:'pagos', type:'it', cat:'Pagos · Fintech',
+    title:'Pasarela de Pagos',
+    desc:'Stripe y MercadoPago con webhooks, gestión de estados, suscripciones y reportes.',
+    long:'Integración completa de pasarelas de pago con manejo de estados, suscripciones recurrentes, reembolsos automatizados y dashboard de transacciones en tiempo real.',
+    features:['Stripe & MercadoPago', 'Webhooks en tiempo real', 'Suscripciones recurrentes', 'Gestión de reembolsos', 'Dashboard de pagos', 'Alertas automáticas'],
+    stack:['Stripe', 'MercadoPago', 'Node.js', 'PostgreSQL']
+  },
+  {
+    id:'dashboard', type:'it', cat:'Analytics · BI',
+    title:'Reportes & Dashboards',
+    desc:'Dashboards interactivos con KPIs, gráficos en tiempo real y exportación de datos.',
+    long:'Paneles de control personalizados con métricas clave de tu negocio, gráficos interactivos, filtros dinámicos y exportación a Excel/PDF con un clic.',
+    features:['KPIs en tiempo real', 'Charts interactivos', 'Filtros dinámicos', 'Exportación PDF/Excel', 'Alertas configurables', 'Comparativas temporales'],
+    stack:['React', 'Chart.js', 'D3.js', 'Node.js', 'PostgreSQL']
+  },
+  {
+    id:'portal', type:'wix', cat:'Portales · Membresías',
+    title:'Portal de Clientes',
+    desc:'Área privada con login, panel personalizado, gestión de documentos y comunicación interna.',
+    long:'Portal exclusivo para tus clientes con acceso seguro, panel de usuario personalizado, descarga de documentos, historial de servicios y comunicación directa.',
+    features:['Área privada de acceso', 'Panel por usuario', 'Gestión de documentos', 'Historial de servicios', 'Mensajería interna', 'Notificaciones por email'],
+    stack:['Wix', 'Next.js', 'Auth0', 'PostgreSQL']
+  },
+  {
+    id:'crm', type:'it', cat:'CRM · Ventas',
+    title:'CRM Interno',
+    desc:'Sistema de gestión de clientes con pipeline de ventas, seguimiento y automatizaciones.',
+    long:'CRM desarrollado a medida para tu equipo comercial. Pipeline visual de ventas, historial completo de interacciones, recordatorios automáticos y reportes de conversión.',
+    features:['Pipeline de ventas visual', 'Gestión de contactos', 'Historial de interacciones', 'Tareas y recordatorios', 'Automatizaciones', 'Reportes de conversión'],
+    stack:['React', 'Node.js', 'PostgreSQL', 'Redis']
+  },
+  {
+    id:'auth', type:'it', cat:'Seguridad · Auth',
+    title:'Autenticación & Usuarios',
+    desc:'Login, registro, JWT, OAuth 2.0 y control de acceso por roles configurable.',
+    long:'Sistema de autenticación robusto con múltiples métodos de login, gestión de sesiones segura, roles granulares y protección contra ataques comunes.',
+    features:['Login / Registro', 'JWT & OAuth 2.0', 'Roles y permisos', 'Autenticación 2FA', 'Recuperación de cuenta', 'Sesión multi-dispositivo'],
+    stack:['Node.js', 'JWT', 'OAuth', 'bcrypt', 'Redis']
+  },
+  {
+    id:'ia', type:'it', cat:'IA · Automatización',
+    title:'Integración IA & Chatbot',
+    desc:'Agentes con IA, chatbots entrenados con tus datos y automatización de procesos con Make y n8n.',
+    long:'Soluciones de inteligencia artificial aplicadas a tu negocio: chatbots que responden con el conocimiento de tu empresa, agentes autónomos y flujos automatizados que trabajan 24/7.',
+    features:['Chatbot IA personalizado', 'RAG con tus documentos', 'Agentes autónomos', 'Automatización Make/n8n', 'Integración con CRM', 'Análisis de conversaciones'],
+    stack:['OpenAI', 'Claude', 'Make', 'n8n', 'Python', 'Pinecone']
+  },
+  // Marketing
+  {
+    id:'logos', type:'mkt', cat:'Identidad Visual',
+    title:'Diseño de Logos',
+    desc:'Identidades únicas que comunican el ADN de tu marca, desde concepto hasta todos los formatos.',
+    long:'Proceso de diseño estratégico que va desde el análisis de tu marca hasta la entrega de un sistema de identidad visual coherente y memorable.',
+    features:['Concepto estratégico', 'Variantes de color', 'Versión h/v y monocromía', 'Formato vectorial (AI/SVG)', 'Pack de aplicaciones', 'Guía de uso'],
+    stack:['Illustrator', 'Figma', 'Photoshop']
+  },
+  {
+    id:'branding', type:'mkt', cat:'Brand Strategy',
+    title:'Branding Integral',
+    desc:'Manual de marca completo: logo, paleta, tipografía y aplicaciones en todos los puntos de contacto.',
+    long:'Sistema de identidad de marca completo que garantiza coherencia visual en todos los canales. Desde el logotipo hasta las plantillas de comunicación.',
+    features:['Manual de identidad', 'Paleta de colores', 'Sistema tipográfico', 'Aplicaciones de marca', 'Templates para RRSS', 'Papelería digital'],
+    stack:['Figma', 'Illustrator', 'Photoshop']
+  },
+  {
+    id:'mkt-digital', type:'mkt', cat:'Estrategia Digital',
+    title:'Marketing Digital',
+    desc:'Full-funnel en Meta y Google. Segmentación precisa, creatividades que convierten y ROI medible.',
+    long:'Gestión integral de campañas pagas con estrategia de embudo completo, creatividades optimizadas por datos y reportes de rendimiento en tiempo real.',
+    features:['Meta Ads (Instagram/FB)', 'Google Ads & Display', 'Segmentación avanzada', 'Creatividades A/B', 'Reportes de ROI', 'Optimización continua'],
+    stack:['Meta Business', 'Google Ads', 'GA4', 'Looker Studio']
+  },
+  {
+    id:'diseno', type:'mkt', cat:'Diseño Gráfico',
+    title:'Publicidad & Redes Sociales',
+    desc:'Piezas para feed, stories, banners y campañas. Diseño que detiene el scroll.',
+    long:'Producción de material gráfico profesional para todos los formatos digitales: desde posts de feed hasta banners para campañas pagas, con consistencia visual garantizada.',
+    features:['Posts para Instagram/FB', 'Stories y Reels', 'Banners para ads', 'Diseño de campañas', 'Pack mensual disponible', 'Adaptación de formatos'],
+    stack:['Canva Pro', 'Photoshop', 'Figma', 'Premiere']
+  }
+];
+
+// ── RENDER CARDS ──
+function renderCards(filter) {
+  const grid = document.getElementById('solGrid');
+  grid.innerHTML = '';
+  const filtered = filter === 'all' ? solutions : solutions.filter(s => s.type === filter);
+  filtered.forEach((s, i) => {
+    const card = document.createElement('div');
+    card.className = 'sol-card';
+    card.style.animationDelay = (i * 0.04) + 's';
+    const badgeClass = s.type === 'mkt' ? 'sol-type-mkt' : 'sol-type-it';
+    const badgeLabel = s.type === 'mkt' ? 'MKT' : (s.type === 'wix' ? 'WEB' : 'DEV');
+    card.innerHTML = `
+      <span class="sol-type-badge ${badgeClass}">${badgeLabel}</span>
+      <div class="sol-cat">${s.cat}</div>
+      <div class="sol-title">${s.title}</div>
+      <div class="sol-desc">${s.desc}</div>
+      <div class="sol-feats">
+        ${s.features.slice(0,3).map(f=>`<div class="sol-feat">${f}</div>`).join('')}
+      </div>
+      <div class="sol-link">Ver detalles <span>→</span></div>
+    `;
+    card.addEventListener('click', () => openModal(s));
+    grid.appendChild(card);
+  });
+}
+
+// ── FILTERS ──
+document.getElementById('solFilters').addEventListener('click', e => {
+  const btn = e.target.closest('.sol-filter');
+  if (!btn) return;
+  document.querySelectorAll('.sol-filter').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderCards(btn.dataset.filter);
+});
+
+renderCards('all');
+
+// ── MODAL ──
+function openModal(s) {
+  const content = document.getElementById('solModalContent');
+  content.innerHTML = `
+    <div class="sol-modal-head">
+      <div class="sol-modal-cat">${s.cat}</div>
+      <div class="sol-modal-title">${s.title}</div>
+      <div class="sol-modal-desc">${s.long}</div>
+    </div>
+    <div class="sol-modal-body">
+      <div class="sol-section-lbl">Incluye</div>
+      <div class="sol-modal-feats">
+        ${s.features.map(f=>`<div class="sol-modal-feat">${f}</div>`).join('')}
+      </div>
+      <div class="sol-section-lbl">Tecnologías</div>
+      <div class="sol-modal-stack">
+        ${s.stack.map(t=>`<span class="sol-stack-tag">${t}</span>`).join('')}
+      </div>
+      <a href="#contacto" class="sol-modal-cta" onclick="closeModal()">Consultar este servicio →</a>
+    </div>
+  `;
+  document.getElementById('solModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('solModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('solModalClose').addEventListener('click', closeModal);
+document.getElementById('solModal').addEventListener('click', e => { if (e.target === e.currentTarget) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
 // ── MOBILE MENU ──
 function toggleMobile() {
   document.getElementById('mobileMenu').classList.toggle('open');
@@ -1294,137 +852,40 @@ window.addEventListener('scroll', () => {
 const canvas = document.getElementById('neural-canvas');
 const ctx = canvas.getContext('2d');
 let nodes = [];
-const N = 75;
-const DIST = 145;
-
-function resize() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
-
+const N = 75, DIST = 145;
+function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
 class Node {
-  constructor() {
-    this.x = Math.random() * canvas.width;
-    this.y = Math.random() * canvas.height;
-    this.vx = (Math.random() - 0.5) * 0.38;
-    this.vy = (Math.random() - 0.5) * 0.38;
-    this.r  = Math.random() * 2.2 + 0.8;
-    this.isAccent = Math.random() > 0.55;
-    this.opacity = Math.random() * 0.45 + 0.25;
-  }
-  update() {
-    this.x += this.vx;
-    this.y += this.vy;
-    if (this.x < 0 || this.x > canvas.width)  this.vx *= -1;
-    if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
-  }
-  draw() {
-    const color = this.isAccent ? '#06B6D4' : '#1E40AF';
-    ctx.save();
-    ctx.globalAlpha = this.opacity;
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-    ctx.fillStyle = color;
-    ctx.fill();
-    const g = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.r * 4);
-    g.addColorStop(0, color + '55');
-    g.addColorStop(1, 'transparent');
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.r * 4, 0, Math.PI * 2);
-    ctx.fillStyle = g;
-    ctx.globalAlpha = this.opacity * 0.5;
-    ctx.fill();
-    ctx.restore();
-  }
+  constructor() { this.x = Math.random()*canvas.width; this.y = Math.random()*canvas.height; this.vx = (Math.random()-0.5)*0.38; this.vy = (Math.random()-0.5)*0.38; this.r = Math.random()*2.2+0.8; this.isAccent = Math.random()>0.55; this.opacity = Math.random()*0.45+0.25; }
+  update() { this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>canvas.width) this.vx*=-1; if(this.y<0||this.y>canvas.height) this.vy*=-1; }
+  draw() { const c=this.isAccent?'#06B6D4':'#1E40AF'; ctx.save(); ctx.globalAlpha=this.opacity; ctx.beginPath(); ctx.arc(this.x,this.y,this.r,0,Math.PI*2); ctx.fillStyle=c; ctx.fill(); const g=ctx.createRadialGradient(this.x,this.y,0,this.x,this.y,this.r*4); g.addColorStop(0,c+'55'); g.addColorStop(1,'transparent'); ctx.beginPath(); ctx.arc(this.x,this.y,this.r*4,0,Math.PI*2); ctx.fillStyle=g; ctx.globalAlpha=this.opacity*0.5; ctx.fill(); ctx.restore(); }
 }
-
-function initNodes() {
-  nodes = Array.from({ length: N }, () => new Node());
-}
-
-let raf;
+function initNodes() { nodes = Array.from({length:N},()=>new Node()); }
 function animate() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  for (let i = 0; i < nodes.length; i++) {
-    nodes[i].update();
-    nodes[i].draw();
-    for (let j = i + 1; j < nodes.length; j++) {
-      const dx = nodes[i].x - nodes[j].x;
-      const dy = nodes[i].y - nodes[j].y;
-      const d  = Math.sqrt(dx * dx + dy * dy);
-      if (d < DIST) {
-        const alpha = (1 - d / DIST) * 0.22;
-        ctx.save();
-        ctx.globalAlpha = alpha;
-        ctx.strokeStyle = (nodes[i].isAccent || nodes[j].isAccent) ? '#06B6D4' : '#1E40AF';
-        ctx.lineWidth = 0.75;
-        ctx.beginPath();
-        ctx.moveTo(nodes[i].x, nodes[i].y);
-        ctx.lineTo(nodes[j].x, nodes[j].y);
-        ctx.stroke();
-        ctx.restore();
-      }
-    }
-  }
-  raf = requestAnimationFrame(animate);
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  for(let i=0;i<nodes.length;i++) { nodes[i].update(); nodes[i].draw(); for(let j=i+1;j<nodes.length;j++) { const dx=nodes[i].x-nodes[j].x,dy=nodes[i].y-nodes[j].y,d=Math.sqrt(dx*dx+dy*dy); if(d<DIST) { ctx.save(); ctx.globalAlpha=(1-d/DIST)*0.22; ctx.strokeStyle=(nodes[i].isAccent||nodes[j].isAccent)?'#06B6D4':'#1E40AF'; ctx.lineWidth=0.75; ctx.beginPath(); ctx.moveTo(nodes[i].x,nodes[i].y); ctx.lineTo(nodes[j].x,nodes[j].y); ctx.stroke(); ctx.restore(); } } }
+  requestAnimationFrame(animate);
 }
-
-resize();
-initNodes();
-animate();
-window.addEventListener('resize', () => { resize(); }, { passive: true });
+resize(); initNodes(); animate();
+window.addEventListener('resize', resize, { passive: true });
 
 // ── TYPEWRITER ──
 const words = ['IA','Automatización','Marketing','Software','Estrategia'];
-let wi = 0, ci = 0, del = false;
+let wi=0,ci=0,del=false;
 const tw = document.getElementById('tw');
-
-function tick() {
-  const w = words[wi];
-  if (del) {
-    tw.textContent = w.slice(0, ci--);
-    if (ci < 0) { del = false; wi = (wi + 1) % words.length; setTimeout(tick, 420); return; }
-    setTimeout(tick, 48);
-  } else {
-    tw.textContent = w.slice(0, ci++);
-    if (ci > w.length) { del = true; setTimeout(tick, 2400); return; }
-    setTimeout(tick, 82);
-  }
-}
-setTimeout(tick, 1100);
+function tick() { const w=words[wi]; if(del) { tw.textContent=w.slice(0,ci--); if(ci<0){del=false;wi=(wi+1)%words.length;setTimeout(tick,420);return;} setTimeout(tick,48); } else { tw.textContent=w.slice(0,ci++); if(ci>w.length){del=true;setTimeout(tick,2400);return;} setTimeout(tick,82); } }
+setTimeout(tick,1100);
 
 // ── SCROLL REVEAL ──
 const revEls = document.querySelectorAll('.reveal');
-const revObs = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('in'); revObs.unobserve(e.target); }
-  });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+const revObs = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('in');revObs.unobserve(e.target);} }); }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 revEls.forEach(el => revObs.observe(el));
 
-// ── COUNTER ANIMATION ──
+// ── COUNTER ──
 const counters = document.querySelectorAll('.stat-num[data-target]');
-const cntObs = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (!e.isIntersecting) return;
-    const el = e.target;
-    const target = +el.dataset.target;
-    const suffix = target === 98 ? '%' : '+';
-    let val = 0;
-    const step = target / 55;
-    function go() {
-      val = Math.min(val + step, target);
-      el.textContent = Math.floor(val) + suffix;
-      if (val < target) requestAnimationFrame(go);
-    }
-    go();
-    cntObs.unobserve(el);
-  });
-}, { threshold: 0.6 });
+const cntObs = new IntersectionObserver(entries => { entries.forEach(e => { if(!e.isIntersecting) return; const el=e.target,target=+el.dataset.target,suffix=target===98?'%':'+'; let val=0,step=target/55; function go(){val=Math.min(val+step,target);el.textContent=Math.floor(val)+suffix;if(val<target)requestAnimationFrame(go);} go(); cntObs.unobserve(el); }); }, { threshold: 0.6 });
 counters.forEach(el => cntObs.observe(el));
 </script>
 
-<!-- Calendly widget script -->
 <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 </body>
 </html>
