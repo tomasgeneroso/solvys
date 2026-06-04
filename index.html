@@ -34,6 +34,13 @@
     html { scroll-behavior: smooth; overflow-x: hidden; }
     body { font-family: var(--font); background: var(--bg-dark); color: var(--text-primary); overflow-x: hidden; max-width: 100vw; }
 
+    /* Grain overlay — breaks digital flatness */
+    body::before {
+      content: ''; position: fixed; inset: 0; z-index: 9998; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='350' height='350'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='350' height='350' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 1;
+    }
+
     ::-webkit-scrollbar { width: 3px; }
     ::-webkit-scrollbar-track { background: var(--bg-dark); }
     ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
@@ -113,7 +120,7 @@
 
     /* ── HERO ── */
     .hero {
-      position: relative; min-height: 100dvh;
+      position: relative; height: 100dvh;
       display: flex; align-items: center; overflow: hidden;
       background: var(--bg-deep);
     }
@@ -193,6 +200,7 @@
       font-weight: 700; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 1.5rem;
     }
     .hero-title span { display: block; }
+    .hero-title > span:last-child { min-height: 2.2em; }
     .tw-accent { color: var(--accent); }
     .tw-cursor {
       display: inline-block; width: 3px; height: 0.8em;
@@ -312,6 +320,7 @@
     .section-title {
       font-size: clamp(1.9rem, 4vw, 3.4rem); font-weight: 700;
       letter-spacing: -0.03em; line-height: 1.08; margin-bottom: 1.25rem;
+      text-wrap: balance;
     }
     .accent { color: var(--accent); }
     .muted { color: var(--text-muted); }
@@ -365,14 +374,21 @@
     .scard:hover::before { opacity: 1; }
     .scard--wide { grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
 
-    .scard-icon {
-      width: 48px; height: 48px; border-radius: 14px;
-      background: rgba(6,182,212,0.08); border: 1px solid rgba(6,182,212,0.22);
-      display: flex; align-items: center; justify-content: center; font-size: 22px;
-      margin-bottom: 1.25rem; position: relative; z-index: 1;
-      transition: all 0.4s var(--spring);
+    /* Editorial number system — replaces emoji icons */
+    .scard-num {
+      position: absolute; top: 1.5rem; right: 1.75rem;
+      font-family: var(--mono); font-size: 5.5rem; font-weight: 700;
+      color: rgba(6,182,212,0.042); letter-spacing: -0.05em;
+      line-height: 1; user-select: none; pointer-events: none;
+      transition: color 0.55s ease;
     }
-    .scard:hover .scard-icon { background: rgba(6,182,212,0.18); transform: scale(1.08); }
+    .scard:hover .scard-num { color: rgba(6,182,212,0.088); }
+    .scard-rule {
+      width: 24px; height: 2px;
+      background: var(--accent); opacity: 0.8;
+      margin-bottom: 1.5rem;
+    }
+
     .scard-title { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.7rem; position: relative; z-index: 1; }
     .scard-desc { font-size: 0.87rem; color: var(--text-muted); line-height: 1.72; position: relative; z-index: 1; }
     .scard-tags { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 1.5rem; position: relative; z-index: 1; }
@@ -381,7 +397,7 @@
       background: rgba(6,182,212,0.07); border: 1px solid rgba(6,182,212,0.2);
       font-size: 0.68rem; color: var(--accent); font-weight: 500; letter-spacing: 0.04em;
     }
-    .scard-visual { display: flex; align-items: center; justify-content: center; min-height: 180px; }
+    .scard-visual { display: flex; align-items: center; justify-content: center; min-height: 180px; position: relative; z-index: 1; }
 
     /* ── PORTFOLIO ── */
     .portfolio { background: var(--bg-mid); padding: 9rem 0; }
@@ -398,12 +414,15 @@
     .pcard:hover { transform: translateY(-9px); border-color: rgba(6,182,212,0.35); box-shadow: 0 28px 60px rgba(6,182,212,0.1); }
     .pcard-bg { position: absolute; inset: 0; opacity: 0.18; transition: opacity 0.5s ease; }
     .pcard:hover .pcard-bg { opacity: 0.3; }
-    .pcard-emoji {
-      position: absolute; inset: 0; display: flex;
-      align-items: center; justify-content: center;
-      font-size: 5rem; transition: transform 0.5s var(--spring);
+
+    /* Abstract SVG art per card — replaces emoji */
+    .pcard-art {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
     }
-    .pcard:hover .pcard-emoji { transform: scale(1.12); }
+    .pcard-art svg { transition: opacity 0.5s ease, transform 0.6s var(--spring); opacity: 0.6; }
+    .pcard:hover .pcard-art svg { opacity: 0.85; transform: scale(1.05); }
+
     .pcard-overlay {
       position: absolute; inset: 0;
       background: linear-gradient(to top, rgba(4,8,15,0.97) 0%, rgba(4,8,15,0.35) 52%, transparent 100%);
@@ -415,100 +434,6 @@
     }
     .pcard-title { font-size: 1.35rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.45rem; }
     .pcard-desc { font-size: 0.83rem; color: var(--text-muted); line-height: 1.65; max-width: 380px; }
-
-    /* ── PRICING ── */
-    .pricing { background: var(--bg-deep); padding: 9rem 0; }
-    .pricing-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-    .pricing-header { text-align: center; max-width: 600px; margin: 0 auto 1.5rem; }
-
-    .rate-badge {
-      display: inline-flex; align-items: center; gap: 1rem;
-      padding: 0.75rem 1.75rem; margin: 0 auto 3.5rem;
-      background: rgba(6,182,212,0.07); border: 1px solid rgba(6,182,212,0.25); border-radius: 100px;
-      font-size: 0.9rem; font-weight: 600; color: var(--text-primary);
-    }
-    .rate-badge span { color: var(--accent); font-size: 1.05rem; }
-    .rate-sep { width: 1px; height: 18px; background: rgba(6,182,212,0.25); }
-    .rate-wrapper { display: flex; justify-content: center; }
-
-    .pricing-grid {
-      display: grid; grid-template-columns: repeat(3,1fr); gap: 1.1rem; margin-bottom: 1.5rem;
-    }
-    .price-card {
-      border-radius: 20px; padding: 1.6rem;
-      background: rgba(6,13,31,0.85); border: 1px solid rgba(6,182,212,0.1);
-      position: relative; overflow: hidden;
-      transition: all 0.5s var(--spring);
-    }
-    .price-card::before {
-      content: ''; position: absolute; inset: 0; border-radius: 20px;
-      background: linear-gradient(135deg, rgba(6,182,212,0.06), transparent 55%);
-      opacity: 0; transition: opacity 0.4s ease;
-    }
-    .price-card:hover { border-color: rgba(6,182,212,0.35); transform: translateY(-5px); box-shadow: 0 18px 50px rgba(6,182,212,0.08); }
-    .price-card:hover::before { opacity: 1; }
-    .price-card--custom {
-      grid-column: span 3; display: grid; grid-template-columns: 1fr auto;
-      align-items: center; gap: 2rem;
-      background: linear-gradient(135deg, rgba(30,64,175,0.12), rgba(6,182,212,0.06));
-      border-color: rgba(6,182,212,0.22);
-    }
-    .pc-name { font-size: 1rem; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 0.35rem; }
-    .pc-sub { font-size: 0.78rem; color: var(--text-muted); line-height: 1.5; }
-    .pc-hours {
-      display: inline-flex; align-items: center; gap: 0.4rem;
-      padding: 0.2rem 0.6rem; border-radius: 100px;
-      background: rgba(6,182,212,0.07); border: 1px solid rgba(6,182,212,0.18);
-      font-size: 0.7rem; color: var(--accent); font-weight: 600;
-      margin-bottom: 0.85rem; font-family: var(--mono);
-    }
-    .pc-price {
-      display: flex; align-items: baseline; gap: 0.3rem; margin-top: 0.65rem;
-    }
-    .pc-price-min { font-size: 1.5rem; font-weight: 700; color: var(--accent); letter-spacing: -0.02em; }
-    .pc-price-sep { font-size: 0.85rem; color: var(--text-muted); }
-    .pc-price-max { font-size: 1.1rem; font-weight: 600; color: var(--text-muted); }
-    .pc-price-only { font-size: 1.5rem; font-weight: 700; color: var(--accent); letter-spacing: -0.02em; }
-
-    .support-banner {
-      display: grid; grid-template-columns: auto 1fr; gap: 2rem; align-items: center;
-      padding: 2rem 2.5rem; border-radius: 20px; margin-top: 1.5rem;
-      background: rgba(6,182,212,0.05); border: 1px solid rgba(6,182,212,0.2);
-    }
-    .support-badge {
-      width: 64px; height: 64px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.1rem; font-weight: 700; color: white; line-height: 1.1;
-      text-align: center; flex-shrink: 0;
-    }
-    .support-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.35rem; }
-    .support-items { display: flex; flex-direction: column; gap: 0.3rem; }
-    .support-item {
-      display: flex; align-items: center; gap: 0.5rem;
-      font-size: 0.82rem; color: var(--text-muted);
-    }
-    .support-item .si-dot {
-      width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
-    }
-    .si-dot--green { background: #22C55E; }
-    .si-dot--yellow { background: #EAB308; }
-
-    .pricing-notes {
-      margin-top: 1.5rem; padding: 1.5rem 2rem;
-      background: rgba(30,64,175,0.05); border: 1px solid rgba(30,64,175,0.15);
-      border-radius: 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem 2rem;
-    }
-    .pricing-note { font-size: 0.78rem; color: var(--text-muted); display: flex; align-items: flex-start; gap: 0.5rem; }
-    .pricing-note::before { content: '→'; color: var(--accent); flex-shrink: 0; font-size: 0.72rem; margin-top: 1px; }
-
-    @media (max-width: 768px) {
-      .pricing-grid { grid-template-columns: 1fr; }
-      .price-card--custom { grid-column: span 1; grid-template-columns: 1fr; }
-      .support-banner { grid-template-columns: 1fr; text-align: center; }
-      .support-badge { margin: 0 auto; }
-      .pricing-notes { grid-template-columns: 1fr; }
-    }
 
     /* ── PLANNER ── */
     .planner { background: var(--bg-deep); padding: 9rem 0; }
@@ -587,9 +512,14 @@
     .contact-desc { font-size: 0.98rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 2.5rem; }
     .cdetail { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.1rem; }
     .cdetail-icon {
-      width: 44px; height: 44px; border-radius: 12px;
+      width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
       background: rgba(6,182,212,0.08); border: 1px solid rgba(6,182,212,0.2);
-      display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .cdetail-icon svg {
+      width: 20px; height: 20px;
+      stroke: var(--accent); fill: none;
+      stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
     }
     .cdetail-text { font-size: 0.88rem; color: var(--text-muted); }
     .cdetail-text strong { display: block; color: var(--text-primary); font-weight: 600; margin-bottom: 2px; font-size: 0.9rem; }
@@ -657,7 +587,7 @@
       .nav-links { display: none; }
       .hamburger { display: flex; }
 
-      .hero { overflow: hidden; }
+      .hero { height: auto; min-height: 100dvh; overflow: hidden; }
       .hero-content { grid-template-columns: 1fr; gap: 2rem; text-align: center; padding: 6rem 1.25rem 2rem; width: 100%; }
       .hero-left { width: 100%; min-width: 0; }
       .hero-title { font-size: clamp(1.8rem, 8vw, 2.8rem); }
@@ -921,10 +851,11 @@
     </div>
 
     <div class="services-grid">
-      <!-- IT Soluctions - wide card -->
+
+      <!-- 01 — IT Solutions wide card -->
       <div class="scard scard--wide reveal">
         <div>
-          <div class="scard-icon">⚡</div>
+          <div class="scard-rule"></div>
           <h3 class="scard-title">Soluciones IT a Medida</h3>
           <p class="scard-desc">Diseñamos, desarrollamos y mantenemos sistemas, aplicaciones web y plataformas digitales adaptadas a tus procesos. Infraestructura escalable, código limpio, resultados medibles.</p>
           <div class="scard-tags">
@@ -970,9 +901,10 @@
         </div>
       </div>
 
-      <!-- Marketing Digital -->
+      <!-- 02 — Marketing Digital -->
       <div class="scard reveal d1">
-        <div class="scard-icon">📡</div>
+        <div class="scard-num">02</div>
+        <div class="scard-rule"></div>
         <h3 class="scard-title">Marketing Digital</h3>
         <p class="scard-desc">Estrategias data-driven que generan leads reales. SEO, paid media, social y content integrados para maximizar tu ROI.</p>
         <div class="scard-tags">
@@ -980,9 +912,10 @@
         </div>
       </div>
 
-      <!-- Automatización -->
+      <!-- 03 — Automatización -->
       <div class="scard reveal d2">
-        <div class="scard-icon">🤖</div>
+        <div class="scard-num">03</div>
+        <div class="scard-rule"></div>
         <h3 class="scard-title">Automatización</h3>
         <p class="scard-desc">Eliminamos tareas repetitivas con flujos inteligentes. Integramos tus herramientas y ponemos el trabajo en piloto automático.</p>
         <div class="scard-tags">
@@ -990,9 +923,10 @@
         </div>
       </div>
 
-      <!-- IA -->
+      <!-- 04 — IA -->
       <div class="scard reveal d1">
-        <div class="scard-icon">🧠</div>
+        <div class="scard-num">04</div>
+        <div class="scard-rule"></div>
         <h3 class="scard-title">Inteligencia Artificial</h3>
         <p class="scard-desc">Chatbots, modelos predictivos, RAG y agentes con IA. Soluciones personalizadas para tu flujo de trabajo.</p>
         <div class="scard-tags">
@@ -1000,9 +934,10 @@
         </div>
       </div>
 
-      <!-- Desarrollo Web -->
+      <!-- 05 — Desarrollo Web -->
       <div class="scard reveal d2">
-        <div class="scard-icon">🌐</div>
+        <div class="scard-num">05</div>
+        <div class="scard-rule"></div>
         <h3 class="scard-title">Desarrollo Web</h3>
         <p class="scard-desc">Landings, e-commerce, portales y sistemas web con diseño premium, velocidad extrema y alta conversión.</p>
         <div class="scard-tags">
@@ -1010,15 +945,17 @@
         </div>
       </div>
 
-      <!-- Consultoría -->
+      <!-- 06 — Consultoría -->
       <div class="scard reveal d3">
-        <div class="scard-icon">💡</div>
+        <div class="scard-num">06</div>
+        <div class="scard-rule"></div>
         <h3 class="scard-title">Consultoría Estratégica</h3>
         <p class="scard-desc">Analizamos tu negocio y diseñamos una hoja de ruta tecnológica para escalar con eficiencia y sin fricciones.</p>
         <div class="scard-tags">
           <span class="pill">Diagnóstico</span><span class="pill">Roadmap</span><span class="pill">KPIs</span>
         </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -1033,9 +970,18 @@
 
     <div class="portfolio-grid" style="grid-template-columns:repeat(3,1fr);gap:1.1rem;">
 
+      <!-- Logos / Identidad Visual -->
       <div class="pcard reveal d1" style="aspect-ratio:3/4;">
         <div class="pcard-bg" style="background:linear-gradient(135deg,#1E40AF,#06B6D4)"></div>
-        <div class="pcard-emoji" style="font-size:4rem;">&#9999;&#65039;</div>
+        <div class="pcard-art">
+          <svg viewBox="0 0 140 100" width="130" height="93" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="55" cy="50" r="36" stroke="#06B6D4" stroke-width="1.2"/>
+            <circle cx="85" cy="50" r="36" stroke="#1E40AF" stroke-width="1.2"/>
+            <path d="M70 16 Q95 50 70 84 Q45 50 70 16" fill="rgba(6,182,212,0.1)"/>
+            <circle cx="55" cy="50" r="36" fill="rgba(30,64,175,0.06)"/>
+            <circle cx="85" cy="50" r="36" fill="rgba(6,182,212,0.06)"/>
+          </svg>
+        </div>
         <div class="pcard-overlay">
           <span class="pcard-cat">Identidad Visual</span>
           <h3 class="pcard-title">Diseño de Logos</h3>
@@ -1043,9 +989,20 @@
         </div>
       </div>
 
+      <!-- Branding -->
       <div class="pcard reveal d2" style="aspect-ratio:3/4;">
         <div class="pcard-bg" style="background:linear-gradient(135deg,#06B6D4,#0D1F5C)"></div>
-        <div class="pcard-emoji" style="font-size:4rem;">&#127991;</div>
+        <div class="pcard-art">
+          <svg viewBox="0 0 120 80" width="110" height="73" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="5" y="5" width="110" height="70" rx="2" stroke="rgba(6,182,212,0.4)" stroke-width="1"/>
+            <line x1="5" y1="28" x2="115" y2="28" stroke="#06B6D4" stroke-width="1.5"/>
+            <rect x="18" y="36" width="36" height="5" rx="2.5" fill="#1E40AF" opacity="0.6"/>
+            <rect x="18" y="46" width="58" height="4" rx="2" fill="rgba(122,144,184,0.3)"/>
+            <rect x="18" y="55" width="44" height="4" rx="2" fill="rgba(122,144,184,0.2)"/>
+            <circle cx="95" cy="52" r="12" stroke="#06B6D4" stroke-width="1" opacity="0.5"/>
+            <circle cx="95" cy="52" r="7" fill="rgba(6,182,212,0.15)"/>
+          </svg>
+        </div>
         <div class="pcard-overlay">
           <span class="pcard-cat">Brand Strategy</span>
           <h3 class="pcard-title">Branding Integral</h3>
@@ -1053,9 +1010,21 @@
         </div>
       </div>
 
+      <!-- Marketing Digital -->
       <div class="pcard reveal d3" style="aspect-ratio:3/4;">
         <div class="pcard-bg" style="background:linear-gradient(135deg,#0D1F5C,#1E40AF)"></div>
-        <div class="pcard-emoji" style="font-size:4rem;">&#128202;</div>
+        <div class="pcard-art">
+          <svg viewBox="0 0 140 80" width="130" height="74" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <polyline points="10,65 38,46 65,52 95,26 130,10" stroke="#06B6D4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="10,65 38,46 65,52 95,26 130,10 130,65 10,65" fill="rgba(6,182,212,0.05)"/>
+            <circle cx="10" cy="65" r="3" fill="#06B6D4"/>
+            <circle cx="38" cy="46" r="3" fill="#06B6D4" opacity="0.7"/>
+            <circle cx="65" cy="52" r="3" fill="#06B6D4" opacity="0.7"/>
+            <circle cx="95" cy="26" r="3" fill="#06B6D4" opacity="0.85"/>
+            <circle cx="130" cy="10" r="4.5" fill="#06B6D4"/>
+            <line x1="10" y1="68" x2="130" y2="68" stroke="rgba(122,144,184,0.2)" stroke-width="1"/>
+          </svg>
+        </div>
         <div class="pcard-overlay">
           <span class="pcard-cat">Estrategia Digital</span>
           <h3 class="pcard-title">Marketing Digital</h3>
@@ -1063,9 +1032,17 @@
         </div>
       </div>
 
+      <!-- Ventas & Cold Calling -->
       <div class="pcard reveal d1" style="aspect-ratio:3/4;">
         <div class="pcard-bg" style="background:linear-gradient(135deg,#06B6D4,#1E40AF)"></div>
-        <div class="pcard-emoji" style="font-size:4rem;">&#128222;</div>
+        <div class="pcard-art">
+          <svg viewBox="0 0 120 90" width="110" height="82" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 12 L105 12 L78 46 L78 82 L42 82 L42 46 Z" fill="rgba(6,182,212,0.08)" stroke="#06B6D4" stroke-width="1.2" stroke-linejoin="round"/>
+            <line x1="15" y1="12" x2="105" y2="12" stroke="#1E40AF" stroke-width="2" stroke-linecap="round"/>
+            <line x1="42" y1="46" x2="78" y2="46" stroke="rgba(6,182,212,0.45)" stroke-width="1"/>
+            <line x1="50" y1="64" x2="70" y2="64" stroke="rgba(6,182,212,0.3)" stroke-width="1"/>
+          </svg>
+        </div>
         <div class="pcard-overlay">
           <span class="pcard-cat">Sales · Prospecting</span>
           <h3 class="pcard-title">Ventas & Cold Calling</h3>
@@ -1073,21 +1050,49 @@
         </div>
       </div>
 
+      <!-- CRM Marketing -->
       <div class="pcard reveal d2" style="aspect-ratio:3/4;">
         <div class="pcard-bg" style="background:linear-gradient(135deg,#1E40AF,#0D1F5C)"></div>
-        <div class="pcard-emoji" style="font-size:4rem;">&#128193;</div>
+        <div class="pcard-art">
+          <svg viewBox="0 0 140 80" width="130" height="74" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="70" cy="40" r="9" fill="rgba(6,182,212,0.2)" stroke="#06B6D4" stroke-width="1.2"/>
+            <circle cx="22" cy="18" r="5.5" fill="rgba(30,64,175,0.3)" stroke="#1E40AF" stroke-width="1"/>
+            <circle cx="118" cy="18" r="5.5" fill="rgba(30,64,175,0.3)" stroke="#1E40AF" stroke-width="1"/>
+            <circle cx="22" cy="62" r="5.5" fill="rgba(30,64,175,0.3)" stroke="#1E40AF" stroke-width="1"/>
+            <circle cx="118" cy="62" r="5.5" fill="rgba(30,64,175,0.3)" stroke="#1E40AF" stroke-width="1"/>
+            <circle cx="70" cy="8" r="4" fill="rgba(6,182,212,0.25)" stroke="#06B6D4" stroke-width="0.8"/>
+            <circle cx="70" cy="72" r="4" fill="rgba(6,182,212,0.25)" stroke="#06B6D4" stroke-width="0.8"/>
+            <line x1="70" y1="40" x2="22" y2="18" stroke="rgba(6,182,212,0.35)" stroke-width="1"/>
+            <line x1="70" y1="40" x2="118" y2="18" stroke="rgba(6,182,212,0.35)" stroke-width="1"/>
+            <line x1="70" y1="40" x2="22" y2="62" stroke="rgba(6,182,212,0.35)" stroke-width="1"/>
+            <line x1="70" y1="40" x2="118" y2="62" stroke="rgba(6,182,212,0.35)" stroke-width="1"/>
+            <line x1="70" y1="40" x2="70" y2="8" stroke="rgba(6,182,212,0.25)" stroke-width="0.8"/>
+            <line x1="70" y1="40" x2="70" y2="72" stroke="rgba(6,182,212,0.25)" stroke-width="0.8"/>
+          </svg>
+        </div>
         <div class="pcard-overlay">
-          <span class="pcard-cat">CRM · Automatizacion</span>
+          <span class="pcard-cat">CRM · Automatización</span>
           <h3 class="pcard-title">CRM Marketing</h3>
           <p class="pcard-desc">Implementación de CRM con flujos de nurturing automatizados y segmentación dinámica de clientes.</p>
         </div>
       </div>
 
+      <!-- Diseño Gráfico -->
       <div class="pcard reveal d3" style="aspect-ratio:3/4;">
         <div class="pcard-bg" style="background:linear-gradient(135deg,#0D1F5C,#06B6D4)"></div>
-        <div class="pcard-emoji" style="font-size:4rem;">&#127912;</div>
+        <div class="pcard-art">
+          <svg viewBox="0 0 120 80" width="110" height="73" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="0" y="0" width="40" height="80" fill="rgba(30,64,175,0.4)"/>
+            <rect x="44" y="0" width="34" height="80" fill="rgba(6,182,212,0.28)"/>
+            <rect x="82" y="0" width="38" height="80" fill="rgba(240,246,255,0.07)"/>
+            <rect x="0" y="0" width="120" height="80" stroke="rgba(6,182,212,0.3)" stroke-width="1"/>
+            <line x1="40" y1="0" x2="40" y2="80" stroke="rgba(6,182,212,0.2)" stroke-width="0.5"/>
+            <line x1="78" y1="0" x2="78" y2="80" stroke="rgba(6,182,212,0.2)" stroke-width="0.5"/>
+            <circle cx="20" cy="40" r="8" fill="rgba(6,182,212,0.3)" stroke="#06B6D4" stroke-width="0.8"/>
+          </svg>
+        </div>
         <div class="pcard-overlay">
-          <span class="pcard-cat">Diseño Grafico</span>
+          <span class="pcard-cat">Diseño Gráfico</span>
           <h3 class="pcard-title">Publicidad & Redes</h3>
           <p class="pcard-desc">Piezas para feed, stories, banners y campañas. Diseño que detiene el scroll y comunica en segundos.</p>
         </div>
@@ -1144,8 +1149,6 @@
       <div class="reveal d2">
         <div class="calendly-shell">
           <div class="calendly-core">
-            <!-- Calendly inline widget -->
-            <!-- IMPORTANTE: reemplazá "solvys/reunion" con tu URL real de Calendly -->
             <div
               class="calendly-inline-widget"
               data-url="https://calendly.com/solvys/reunion?background_color=0c1620&text_color=f0f6ff&primary_color=06b6d4&hide_gdpr_banner=1"
@@ -1169,24 +1172,42 @@
         <p class="contact-desc">
           Contanos tu proyecto y en menos de 24hs te respondemos con una propuesta concreta. Sin compromiso.
         </p>
+
         <div class="cdetail">
-          <div class="cdetail-icon">✉️</div>
+          <div class="cdetail-icon">
+            <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="4" width="16" height="12" rx="2"/>
+              <polyline points="2,4 10,11 18,4"/>
+            </svg>
+          </div>
           <div class="cdetail-text">
             <strong>Email</strong>tomasgeneroso90@gmail.com
           </div>
         </div>
+
         <div class="cdetail">
-          <div class="cdetail-icon">&#128172;</div>
+          <div class="cdetail-icon">
+            <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 4h12a2 2 0 012 2v7a2 2 0 01-2 2H7l-4 3V6a2 2 0 012-2z"/>
+            </svg>
+          </div>
           <div class="cdetail-text">
             <strong>WhatsApp</strong>Respuesta garantizada en el día
           </div>
         </div>
+
         <a href="https://wa.me/+5492923503895?text=Hola%20Solvys%2C%20me%20gustar%C3%ADa%20consultarles%20sobre%20sus%20servicios" target="_blank" rel="noopener" class="btn-primary" style="display:inline-flex;margin-top:1.5rem;background:#25D366;color:white;box-shadow:0 8px 30px rgba(37,211,102,0.3);">
           Escribinos por WhatsApp
           <span class="btn-icon" style="background:rgba(255,255,255,0.2);">&#8599;</span>
         </a>
-        <div class="cdetail">
-          <div class="cdetail-icon">🕐</div>
+
+        <div class="cdetail" style="margin-top:1.5rem;">
+          <div class="cdetail-icon">
+            <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="10" cy="10" r="7"/>
+              <polyline points="10,6 10,10 13,12"/>
+            </svg>
+          </div>
           <div class="cdetail-text">
             <strong>Horario</strong>Lunes a Viernes · 9hs a 18hs (AR)
           </div>
@@ -1196,7 +1217,7 @@
       <div class="reveal d2">
         <div class="form-shell">
           <form class="form-core" id="contactForm" action="https://formsubmit.co/tomasgeneroso90@gmail.com" method="POST">
-            <input type="hidden" name="_subject" value="🚀 Nuevo contacto desde Solvys">
+            <input type="hidden" name="_subject" value="Nuevo contacto desde Solvys">
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_template" value="table">
             <input type="hidden" name="_next" value="https://solvys.site/gracias">
@@ -1249,7 +1270,7 @@
       <a href="#trabajos">Trabajos</a>
       <a href="#contacto">Contacto</a>
     </div>
-    <p class="footer-copy">© 2025 Solvys · Todos los derechos reservados.</p>
+    <p class="footer-copy">&copy; 2025 Solvys · Todos los derechos reservados.</p>
   </div>
 </footer>
 
@@ -1305,7 +1326,6 @@ class Node {
     ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
     ctx.fillStyle = color;
     ctx.fill();
-    // soft glow
     const g = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.r * 4);
     g.addColorStop(0, color + '55');
     g.addColorStop(1, 'transparent');
@@ -1355,7 +1375,7 @@ animate();
 window.addEventListener('resize', () => { resize(); }, { passive: true });
 
 // ── TYPEWRITER ──
-const words = ['Inteligencia Artificial','Automatización','Marketing Digital','Software a Medida','Innovación Real'];
+const words = ['IA','Automatización','Marketing','Software','Estrategia'];
 let wi = 0, ci = 0, del = false;
 const tw = document.getElementById('tw');
 
